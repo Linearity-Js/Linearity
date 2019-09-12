@@ -10,6 +10,7 @@ export class SolverComponent implements OnInit {
   matrixA;
   matrixB;
   matrixC; // Auxiliar
+  showResult;
 
   operationSymbol = `+`;
   operator = 'add';
@@ -22,7 +23,7 @@ export class SolverComponent implements OnInit {
   constructor() {
     this.operationSymbol = `+`;
     this.operator = 'add';
-
+    this.showResult = false;
 
     // this.matrix = [
     //   { x: 1, y: 2, z: 3 },
@@ -64,6 +65,7 @@ export class SolverComponent implements OnInit {
   }
 
   submit() {
+    this.showResult = true;
     switch (this.operator) {
       case 'add':
         this.callAdd();

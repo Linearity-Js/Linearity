@@ -17,6 +17,7 @@ export class MatrixComponent implements OnInit {
   @Input() private matrix: any;
   @Input() public edit: boolean;
   @Input() public hide: boolean;
+  @Input() public show: boolean;
 
 
   closeResult: string;

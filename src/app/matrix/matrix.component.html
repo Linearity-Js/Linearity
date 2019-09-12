@@ -1,174 +1,176 @@
-<div class="card border-0">
-  <div class="row">
-    <div class="col-{{bracket}}">
-      <span [ngSwitch]="getMatrixRows()">
-        <div *ngSwitchCase="1" style="font-size: 3rem; margin: 0ch; text-align: right">
-          {{openSymbol}}
+<div *ngIf="show">
+  <div class="card border-0">
+    <div class="row">
+      <div class="col-{{bracket}}">
+        <span [ngSwitch]="getMatrixRows()">
+          <div *ngSwitchCase="1" style="font-size: 3rem; margin: 0ch; text-align: right">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="2" style="font-size: 5rem; margin: 0ch; text-align: right">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="3" style="font-size: 8rem; margin: 0ch; text-align: right">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="4" style="font-size: 11rem; margin: 0ch; text-align: right">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="5" style="font-size: 13rem; margin: 0ch; text-align: right">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="6" style="font-size: 14rem; margin: 0ch; text-align: left">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="7" style="font-size: 15rem; margin: 0ch; text-align: left">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="8" style="font-size: 25rem; margin: 0ch; text-align: left">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="9" style="font-size: 25rem; margin: 0ch; text-align: left">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="10" style="font-size: 25rem; margin: 0ch; text-align: left">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchCase="11" style="font-size: 25rem; margin: 0ch; text-align: left">
+            {{openSymbol}}
+          </div>
+          <div *ngSwitchDefault>
+            {{openSymbol}}
+          </div>
+        </span>
+      </div>
+      <div class="col-{{12-(2*bracket)}}">
+        <div class="pt-{{padding1}}" style="font-size: 1rem; margin: 0ch;">
+          <form data-parsley-validate>
+            <!-- <div class="row pt-{{padding2}}"> -->
+            <div class="pt-{{padding2}}">
+              <!-- <div *ngFor="let row of getMatrix(); let i = index" class="col p-0">
+                    <input disabled placeholder="0" *ngFor="let coeficient of row; let e = index"
+                      value="{{getMatrix()[i][e]}}" id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
+                      class="form-control-plaintext text-center" />
+                  </div> -->
+              <div *ngFor="let row of getMatrix(); let i = index" class="row">
+                <div *ngFor="let coeficient of row; let e = index" class="col p-0">
+                  <input disabled placeholder="0" value="{{getMatrix()[i][e]}}" id="{{i}},{{e}}" name="{{i}},{{e}}"
+                    title="{{i}},{{e}}" type="number" class="form-control-plaintext text-center" />
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
-        <div *ngSwitchCase="2" style="font-size: 5rem; margin: 0ch; text-align: right">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="3" style="font-size: 8rem; margin: 0ch; text-align: right">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="4" style="font-size: 11rem; margin: 0ch; text-align: right">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="5" style="font-size: 13rem; margin: 0ch; text-align: right">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="6" style="font-size: 14rem; margin: 0ch; text-align: left">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="7" style="font-size: 15rem; margin: 0ch; text-align: left">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="8" style="font-size: 25rem; margin: 0ch; text-align: left">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="9" style="font-size: 25rem; margin: 0ch; text-align: left">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="10" style="font-size: 25rem; margin: 0ch; text-align: left">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchCase="11" style="font-size: 25rem; margin: 0ch; text-align: left">
-          {{openSymbol}}
-        </div>
-        <div *ngSwitchDefault>
-          {{openSymbol}}
-        </div>
-      </span>
+      </div>
+      <div class="col-{{bracket}}">
+        <span [ngSwitch]="getMatrixRows()">
+          <div *ngSwitchCase="1" style="font-size: 3rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="2" style="font-size: 5rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="3" style="font-size: 8rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="4" style="font-size: 11rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="5" style="font-size: 13rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="6" style="font-size: 14rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="7" style="font-size: 15rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="8" style="font-size: 25rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="9" style="font-size: 25rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="10" style="font-size: 25rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchCase="11" style="font-size: 25rem; margin: 0ch; text-align: left">
+            {{clseSymbol}}
+          </div>
+          <div *ngSwitchDefault>
+            {{clseSymbol}}
+          </div>
+        </span>
+      </div>
     </div>
-    <div class="col-{{12-(2*bracket)}}">
-      <div class="pt-{{padding1}}" style="font-size: 1rem; margin: 0ch;">
-        <form data-parsley-validate>
-          <!-- <div class="row pt-{{padding2}}"> -->
-          <div class="pt-{{padding2}}">
-            <!-- <div *ngFor="let row of getMatrix(); let i = index" class="col p-0">
-              <input disabled placeholder="0" *ngFor="let coeficient of row; let e = index"
-                value="{{getMatrix()[i][e]}}" id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
-                class="form-control-plaintext text-center" />
-            </div> -->
-            <div *ngFor="let row of getMatrix(); let i = index" class="row">
-              <div *ngFor="let coeficient of row; let e = index" class="col p-0">
-                <input disabled placeholder="0" value="{{getMatrix()[i][e]}}" id="{{i}},{{e}}" name="{{i}},{{e}}"
-                  title="{{i}},{{e}}" type="number" class="form-control-plaintext text-center" />
+  </div>
+  <div class="form-group pt-2 text-center">
+    <!-- <button class="btn btn-dark m-1 " [title]=titleCopy (click)="upMatrix()">
+          <fa-icon [fixedWidth]="true" [icon]=iconCopy></fa-icon>
+          {{copyText}}
+        </button>
+         -->
+
+    <button *ngIf="edit" class="btn btn-dark m-1" (click)="open(content)" [title]=titleEdit data-toggle="modal"
+      data-target="#exampleModal">
+      <fa-icon [fixedWidth]="true" [icon]=iconEdit></fa-icon>
+      {{editText}}
+    </button>
+    <!-- <button class="btn btn-dark m-1 " [title]=titleClear (click)="cleanMatrix()">
+          <fa-icon [fixedWidth]="true" [icon]=trash></fa-icon>
+          {{trashText}}
+        </button> -->
+  </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <!-- <div *ngFor="let row of getMatrix(); let i = index" class="col">
+                  <input placeholder="0" *ngFor="let coeficient of row; let e = index" value="{{getMatrix()[i][e]}}"
+                    (change)="onChange($event, [i], [e])" id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}"
+                    type="number" class="form-control-plaintext text-center" />
+                </div> -->
+            <div *ngFor="let row of getMatrix(); let i = index" class="row m-x-1">
+              <div *ngFor="let coeficient of row; let e = index" class="col">
+                <input placeholder="0" value="{{getMatrix()[i][e]}}" (change)="onChange($event, [i], [e])"
+                  id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
+                  class="form-control-plaintext text-center" />
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-    <div class="col-{{bracket}}">
-      <span [ngSwitch]="getMatrixRows()">
-        <div *ngSwitchCase="1" style="font-size: 3rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="2" style="font-size: 5rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="3" style="font-size: 8rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="4" style="font-size: 11rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="5" style="font-size: 13rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="6" style="font-size: 14rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="7" style="font-size: 15rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="8" style="font-size: 25rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="9" style="font-size: 25rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="10" style="font-size: 25rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchCase="11" style="font-size: 25rem; margin: 0ch; text-align: left">
-          {{clseSymbol}}
-        </div>
-        <div *ngSwitchDefault>
-          {{clseSymbol}}
-        </div>
-      </span>
-    </div>
-  </div>
-</div>
-<div class="form-group pt-2 text-center">
-  <!-- <button class="btn btn-dark m-1 " [title]=titleCopy (click)="upMatrix()">
-    <fa-icon [fixedWidth]="true" [icon]=iconCopy></fa-icon>
-    {{copyText}}
-  </button>
-   -->
-
-  <button *ngIf="edit" class="btn btn-dark m-1" (click)="open(content)" [title]=titleEdit data-toggle="modal"
-    data-target="#exampleModal">
-    <fa-icon [fixedWidth]="true" [icon]=iconEdit></fa-icon>
-    {{editText}}
-  </button>
-  <!-- <button class="btn btn-dark m-1 " [title]=titleClear (click)="cleanMatrix()">
-    <fa-icon [fixedWidth]="true" [icon]=trash></fa-icon>
-    {{trashText}}
-  </button> -->
-</div>
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <div class="input-group">
-          <!-- <div *ngFor="let row of getMatrix(); let i = index" class="col">
-            <input placeholder="0" *ngFor="let coeficient of row; let e = index" value="{{getMatrix()[i][e]}}"
-              (change)="onChange($event, [i], [e])" id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}"
-              type="number" class="form-control-plaintext text-center" />
-          </div> -->
-          <div *ngFor="let row of getMatrix(); let i = index" class="row m-x-1">
-            <div *ngFor="let coeficient of row; let e = index" class="col">
-              <input placeholder="0" value="{{getMatrix()[i][e]}}" (change)="onChange($event, [i], [e])"
-                id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
-                class="form-control-plaintext text-center" />
-            </div>
+    <div class="modal-footer">
+      <div class="form-group pt-2 text-center">
+        <button class="btn btn-dark m-1 " [title]=titleClear (click)="cleanMatrix()">
+          <fa-icon [fixedWidth]="true" [icon]=iconTrash></fa-icon>
+          {{trashText}}
+        </button>
+        <div class="d-inline-block" ngbDropdown #Drop="ngbDropdown">
+          <button class="btn btn-dark mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="Drop.open()">
+            <fa-icon [fixedWidth]="true" [icon]=transform></fa-icon>
+            {{titleTransformations}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="identity()">
+              {{identityText}}
+            </button>
+            <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="trans()">
+              {{transText}}
+            </button>
           </div>
         </div>
+        <button type="button" class="btn btn-outline-dark m-1" ngbAutofocus
+          (click)="modal.close('Save click')">Save</button>
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <div class="form-group pt-2 text-center">
-      <button class="btn btn-dark m-1 " [title]=titleClear (click)="cleanMatrix()">
-        <fa-icon [fixedWidth]="true" [icon]=iconTrash></fa-icon>
-        {{trashText}}
-      </button>
-      <div class="d-inline-block" ngbDropdown #Drop="ngbDropdown">
-        <button class="btn btn-dark mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="Drop.open()">
-          <fa-icon [fixedWidth]="true" [icon]=transform></fa-icon>
-          {{titleTransformations}}
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownManual">
-          <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="identity()">
-            {{identityText}}
-          </button>
-          <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="trans()">
-            {{transText}}
-          </button>
-        </div>
-      </div>
-      <button type="button" class="btn btn-outline-dark m-1" ngbAutofocus
-        (click)="modal.close('Save click')">Save</button>
     </div>
-  </div>
-</ng-template>
-<pre>{{closeResult}}</pre>
+  </ng-template>
+
+</div>
