@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">References</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <ol>
+    <li>Shores, T. S. (2018). Applied Linear Algebra and Matrix Analysis (2ª ed.).
+      <a title="ISBN 9783319747477" href="https://doi.org/10.1007/978-3-319-74748-4" target="_blank">https://doi.org/10.1007/978-3-319-74748-4</a> 
+    </li>
+  </ol>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" autofocus (click)="activeModal.close('Close click')">Close</button>
+</div>

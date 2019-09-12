@@ -1,0 +1,7 @@
+.b:after {
+  content: "]"
+}
+
+.b:before {
+  content: "["
+}
