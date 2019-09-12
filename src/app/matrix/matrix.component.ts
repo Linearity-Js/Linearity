@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { MatrixService } from '../matrix.service';
 import { faTrash, faCopy, faEdit, faItalic, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { delay } from 'q';
@@ -14,7 +14,7 @@ import { faGoogle, faTumblr } from '@fortawesome/free-brands-svg-icons';
 })
 export class MatrixComponent implements OnInit {
   @Input() public name: string;
-
+  @Input() private matrix: any;
 
   closeResult: string;
   matrixForm: FormGroup;
@@ -44,7 +44,6 @@ export class MatrixComponent implements OnInit {
 
   transform = faSpinner;
 
-  private matrix;
   public colNumber;
   public openSymbol = '[';
   public clseSymbol = ']';
@@ -65,16 +64,17 @@ export class MatrixComponent implements OnInit {
     // ];
 
 
-    this.matrix = [
-      [{ 0: 1, 1: 2, 2: 3 }],
-      [{ 0: 1, 1: 2, 2: 3 }],
-      [{ 0: 1, 1: 2, 2: 3 }]
-    ];
+    // this.matrix = [
+    //   [{ 0: 1, 1: 2, 2: 3 }],
+    //   [{ 0: 1, 1: 2, 2: 3 }],
+    //   [{ 0: 1, 1: 2, 2: 3 }]
+    // ];
 
 
     // this.matrix = [['1', '0'], ['2', '0'], ['0', '0']];
-    // this.matrix = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];
-    this.matrix = [['1', '2', '0', '1'], ['1', '1', '2', '1'], ['1', '1', '0', '1'], ['0', '1', '1', '0']];
+    // this.matrix = [['1', '0'], ['2', '0'], ['0', '0']];
+    this.matrix = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];
+    // this.matrix = [['1', '2', '0', '1'], ['1', '1', '2', '1'], ['1', '1', '0', '1'], ['0', '1', '1', '0']];
     this.getColNumber();
     this.setPaddingConfig();
 

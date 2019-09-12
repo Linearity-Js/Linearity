@@ -43,11 +43,18 @@
     <div class="col-{{12-(2*bracket)}}">
       <div class="pt-{{padding1}}" style="font-size: 1rem; margin: 0ch;">
         <form data-parsley-validate>
-          <div class="row pt-{{padding2}}">
-            <div *ngFor="let row of getMatrix(); let i = index" class="col p-0">
+          <!-- <div class="row pt-{{padding2}}"> -->
+          <div class="pt-{{padding2}}">
+            <!-- <div *ngFor="let row of getMatrix(); let i = index" class="col p-0">
               <input disabled placeholder="0" *ngFor="let coeficient of row; let e = index"
                 value="{{getMatrix()[i][e]}}" id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
                 class="form-control-plaintext text-center" />
+            </div> -->
+            <div *ngFor="let row of getMatrix(); let i = index" class="row">
+              <div *ngFor="let coeficient of row; let e = index" class="col p-0">
+                <input disabled placeholder="0" value="{{getMatrix()[i][e]}}" id="{{i}},{{e}}" name="{{i}},{{e}}"
+                  title="{{i}},{{e}}" type="number" class="form-control-plaintext text-center" />
+              </div>
             </div>
           </div>
         </form>
@@ -121,10 +128,17 @@
     <form>
       <div class="form-group">
         <div class="input-group">
-          <div *ngFor="let row of getMatrix(); let i = index" class="col">
+          <!-- <div *ngFor="let row of getMatrix(); let i = index" class="col">
             <input placeholder="0" *ngFor="let coeficient of row; let e = index" value="{{getMatrix()[i][e]}}"
               (change)="onChange($event, [i], [e])" id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}"
               type="number" class="form-control-plaintext text-center" />
+          </div> -->
+          <div *ngFor="let row of getMatrix(); let i = index" class="row m-x-1">
+            <div *ngFor="let coeficient of row; let e = index" class="col">
+              <input placeholder="0" value="{{getMatrix()[i][e]}}" (change)="onChange($event, [i], [e])"
+                id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
+                class="form-control-plaintext text-center" />
+            </div>
           </div>
         </div>
       </div>

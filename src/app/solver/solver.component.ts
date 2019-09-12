@@ -8,7 +8,7 @@ import { faPlus, faMinus, faStarOfLife } from '@fortawesome/free-solid-svg-icons
 })
 export class SolverComponent implements OnInit {
   operationSymbol = `+`;
-  operator = 'sum';
+  operator = 'add';
   operationText;
 
   plus = faPlus;
@@ -17,12 +17,12 @@ export class SolverComponent implements OnInit {
 
   constructor() {
     this.operationSymbol = `+`;
-    this.operator = 'sum';
+    this.operator = 'add';
   }
 
   ngOnClickPlus() {
     this.operationSymbol = `+`;
-    this.operator = 'sum';
+    this.operator = 'add';
   }
 
   ngOnClickDot() {
@@ -37,6 +37,31 @@ export class SolverComponent implements OnInit {
 
   submit() {
     console.log('realizando submit');
+    switch (this.operator) {
+      case 'sum':
+        this.callAdd();
+        break;
+      case 'sub':
+        this.callSub();
+        break;
+      case 'mul':
+        this.callMul();
+        break;
+      default:
+        break;
+    }
+  }
+
+  callAdd() {
+
+  }
+
+  callSub() {
+
+  }
+
+  callMul() {
+
   }
 
   ngOnInit() {
