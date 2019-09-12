@@ -11,7 +11,7 @@ import { BiblioComponent } from './biblio/biblio.component';
 export class InfoComponent implements OnInit {
 
   // pjson = require('../../../package.json');
-  pjson = 'B0.4.6';
+  pjson = 'B0.4.7';
   version = '';
   book = faBook;
   code = faCode;
