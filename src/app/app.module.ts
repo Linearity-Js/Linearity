@@ -23,6 +23,7 @@ import { BasicComponent } from './solver/basic/basic.component';
 import { GaussComponent } from './solver/gauss/gauss.component';
 import { GaussJordanComponent } from './solver/gauss-jordan/gauss-jordan.component';
 import { DeterminantsComponent } from './solver/determinants/determinants.component';
+import { SrcComponent } from './info/src/src.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { DeterminantsComponent } from './solver/determinants/determinants.compon
     BasicComponent,
     GaussComponent,
     GaussJordanComponent,
-    DeterminantsComponent
+    DeterminantsComponent,
+    SrcComponent
   ],
   entryComponents: [BiblioComponent],
   imports: [
