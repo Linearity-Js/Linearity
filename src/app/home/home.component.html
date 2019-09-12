@@ -1,30 +1,22 @@
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand bigTitle" href="#">
+<!-- Toolbar -->
+
+<div class="content m-5 text-center">
+  <h2 class="bigTitle">
     <fa-icon [icon]="faInfinity"></fa-icon>
     Linearity
-  </a>
-
-  <a class="navbar-brand" href="#">
-
-    <a aria-label="Linearity on Github" href="https://github.com/RubioHaro" title="Github" style="color: white">
-
-      <fa-icon [icon]="faGithub"></fa-icon>
-
-    </a>
-  </a>
-</nav>
-
-<!-- Toolbar -->
-<div class="container">
-  <div class="content">
-    <h2 class="bigTitle">
-      <fa-icon [icon]="faInfinity"></fa-icon>
-      Linearity
-    </h2>
-    <p>The bautyful linear solver</p>
-    <div class="form-group col-12 p-0">
-      <hr>
-    </div>
+  </h2>
+  <p>The bautyful linear solver</p>
+  <div class="form-group col-12 p-0">
+    <hr>
+  </div>
+  <div class="form-group pt-2 text-center">
+    <button routerLink="/solver" routerLinkActive="active" class="btn btn-dark m-1 ">
+      <fa-icon [fixedWidth]="true" [icon]=iconSolver></fa-icon>
+      {{solverText}}
+    </button>
+    <button routerLink="/info" routerLinkActive="active" class="btn btn-dark m-1 ">
+      <fa-icon [fixedWidth]="true" [icon]=iconInfo></fa-icon>
+      {{infoText}}
+    </button>
   </div>
 </div>
-<router-outlet></router-outlet>

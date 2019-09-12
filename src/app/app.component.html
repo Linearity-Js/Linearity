@@ -1,12 +1,13 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand bigTitle" href="#">
+  <a class="navbar-brand bigTitle" routerLink="/home" routerLinkActive="active">
     <fa-icon [icon]="faInfinity"></fa-icon>
     Linearity
   </a>
 
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand">
 
-    <a aria-label="Linearity on Github" href="https://github.com/RubioHaro/Linearity" title="Github" style="color: white">
+    <a aria-label="Linearity on Github" href="https://github.com/RubioHaro/Linearity" title="Github"
+      style="color: white">
 
       <fa-icon [icon]="faGithub"></fa-icon>
 
@@ -15,16 +16,6 @@
 </nav>
 
 <!-- Toolbar -->
-<div class="container">
-  <div class="content mb-1">
-    <h2 class="bigTitle">
-      <fa-icon [icon]="faInfinity"></fa-icon>
-      Linearity
-    </h2>
-    <p>The bautyful linear solver</p>
-    <div class="form-group col-12 p-0">
-      <hr>
-    </div>
-  </div>
+<div class="container p-5">
   <router-outlet></router-outlet>
 </div>
