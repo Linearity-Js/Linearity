@@ -23,7 +23,7 @@
 
 <div class="row">
   <div class="col-md-5">
-    <app-matrix [name]="'A'" ></app-matrix>
+    <app-matrix [name]="'A'" [edit]=true [matrix]=matrixA ></app-matrix>
   </div>
   <div class="col-md-2 my-auto">
     <h1 class="text-center pb-3">
@@ -32,7 +32,15 @@
 
   </div>
   <div class="col-md-5">
-    <app-matrix [name]="'B'" ></app-matrix>
+    <app-matrix [name]="'B'" [edit]=true [matrix]=matrixB ></app-matrix>
+  </div>
+</div>
+
+<div class="text-center">
+  <div class="row justify-content-center">
+    <div class="col-7"> 
+        <app-matrix [name]="'C'" [edit]=false [matrix]=matrixC ></app-matrix>
+    </div>
   </div>
 </div>
 

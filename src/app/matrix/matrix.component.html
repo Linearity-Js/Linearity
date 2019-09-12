@@ -103,13 +103,15 @@
   </div>
 </div>
 <div class="form-group pt-2 text-center">
-  <button class="btn btn-dark m-1 " [title]=titleCopy (click)="upMatrix()">
-    <fa-icon [fixedWidth]="true" [icon]=copy></fa-icon>
+  <!-- <button class="btn btn-dark m-1 " [title]=titleCopy (click)="upMatrix()">
+    <fa-icon [fixedWidth]="true" [icon]=iconCopy></fa-icon>
     {{copyText}}
   </button>
-  <button class="btn btn-dark m-1" (click)="open(content)" [title]=titleEdit data-toggle="modal"
+   -->
+
+  <button *ngIf="edit" class="btn btn-dark m-1" (click)="open(content)" [title]=titleEdit data-toggle="modal"
     data-target="#exampleModal">
-    <fa-icon [fixedWidth]="true" [icon]=edit></fa-icon>
+    <fa-icon [fixedWidth]="true" [icon]=iconEdit></fa-icon>
     {{editText}}
   </button>
   <!-- <button class="btn btn-dark m-1 " [title]=titleClear (click)="cleanMatrix()">
@@ -147,7 +149,7 @@
   <div class="modal-footer">
     <div class="form-group pt-2 text-center">
       <button class="btn btn-dark m-1 " [title]=titleClear (click)="cleanMatrix()">
-        <fa-icon [fixedWidth]="true" [icon]=trash></fa-icon>
+        <fa-icon [fixedWidth]="true" [icon]=iconTrash></fa-icon>
         {{trashText}}
       </button>
       <div class="d-inline-block" ngbDropdown #Drop="ngbDropdown">
