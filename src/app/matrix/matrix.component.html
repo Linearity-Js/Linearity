@@ -42,22 +42,17 @@
     </div>
     <div class="col-{{12-(2*bracket)}}">
       <div class="pt-{{padding1}}" style="font-size: 1rem; margin: 0ch;">
-
         <form data-parsley-validate>
           <div class="row pt-{{padding2}}">
             <div *ngFor="let row of getMatrix(); let i = index" class="col p-0">
-              <input disabled placeholder="0" *ngFor="let coeficient of row; let e = index" value="{{getMatrix()[i][e]}}"
-                id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
+              <input disabled placeholder="0" *ngFor="let coeficient of row; let e = index"
+                value="{{getMatrix()[i][e]}}" id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
                 class="form-control-plaintext text-center" />
             </div>
-
-
           </div>
         </form>
-
       </div>
     </div>
-
     <div class="col-{{bracket}}">
       <span [ngSwitch]="getMatrixRows()">
         <div *ngSwitchCase="1" style="font-size: 3rem; margin: 0ch; text-align: left">
@@ -97,10 +92,7 @@
           {{clseSymbol}}
         </div>
       </span>
-
-
     </div>
-
   </div>
 </div>
 <div class="form-group pt-2 text-center">
@@ -118,8 +110,6 @@
     {{trashText}}
   </button> -->
 </div>
-
-
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
@@ -136,7 +126,6 @@
               (change)="onChange($event, [i], [e])" id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}"
               type="number" class="form-control-plaintext text-center" />
           </div>
-
         </div>
       </div>
     </form>
@@ -147,7 +136,6 @@
         <fa-icon [fixedWidth]="true" [icon]=trash></fa-icon>
         {{trashText}}
       </button>
-
       <div class="d-inline-block" ngbDropdown #Drop="ngbDropdown">
         <button class="btn btn-dark mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="Drop.open()">
           <fa-icon [fixedWidth]="true" [icon]=transform></fa-icon>
@@ -162,12 +150,9 @@
           </button>
         </div>
       </div>
-
       <button type="button" class="btn btn-outline-dark m-1" ngbAutofocus
         (click)="modal.close('Save click')">Save</button>
     </div>
-
   </div>
 </ng-template>
-
 <pre>{{closeResult}}</pre>

@@ -35,6 +35,10 @@ export class SolverComponent implements OnInit {
     this.operator = 'sub';
   }
 
+  submit() {
+    console.log('realizando submit');
+  }
+
   ngOnInit() {
   }
 
