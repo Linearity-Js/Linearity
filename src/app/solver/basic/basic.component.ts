@@ -30,6 +30,9 @@ export class BasicComponent implements OnInit {
     this.operator = 'add';
     this.showResult = false;
 
+    this.matrixA = [['1', '2', '0', '1'], ['1', '1', '0', '1'], ['1', '2', '3', '1']];
+    this.matrixB = [['1', '2', '3', '1'], ['1', '2', '0', '1'], ['1', '2', '0', '1']];
+
     this.matrixA = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];
     this.matrixB = [['3', '7', '0'], ['0', '2', '1'], ['4', '0', '1']];
 

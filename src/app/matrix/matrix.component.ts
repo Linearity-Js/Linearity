@@ -20,6 +20,8 @@ export class MatrixComponent implements OnInit {
   @Input() public show: boolean;
 
 
+  n;
+  m;
   closeResult: string;
   matrixForm: FormGroup;
   demoForm: FormGroup;
@@ -35,6 +37,7 @@ export class MatrixComponent implements OnInit {
   identityText = 'Identity matrix';
   transText = 'Transposed matrix';
   transformationsText = 'Transform';
+  sizeText = 'Size';
 
   titleClear = 'Clean all matrix';
   titleCopy = 'Copy the matrix';
@@ -72,6 +75,32 @@ export class MatrixComponent implements OnInit {
 
     // this.matrixForm.valueChanges.subscribe(console.log);
 
+  }
+
+  setSize(row, col) {
+    if (row === col) {
+      switch (row) {
+        case 2:
+          this.matrix = [[0, 0], [0, 0]];
+          break;
+        case 3:
+          this.matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+          break;
+        case 4:
+          this.matrix = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+          break;
+        default:
+          break;
+      }
+    } else {
+      this.matrix = new Array(row);
+      for (let i = 0; i < row; i++) {
+        this.matrix[i] = new Array(col);
+        for (let j = 0; j < col; j++) {
+          this.matrix[i][j] = 0;
+        }
+      }
+    }
   }
 
   open(content) {

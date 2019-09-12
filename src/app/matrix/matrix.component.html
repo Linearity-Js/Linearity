@@ -120,7 +120,7 @@
           {{trashText}}
         </button> -->
   </div>
-  <ng-template #content let-modal>
+  <ng-template #content  let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -167,7 +167,55 @@
             </button>
           </div>
         </div>
+        <div class="d-inline-block" ngbDropdown #DropSize="ngbDropdown">
+          <button class="btn btn-dark mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="DropSize.open()">
+            <fa-icon [fixedWidth]="true" [icon]=transform></fa-icon>
+            {{sizeText}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="setSize(2,2)">
+              2x2
+            </button>
+            <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="setSize(2,3)">
+              2x3
+            </button>
+            <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="setSize(3,3)">
+              3x3
+            </button>
+            <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="setSize(4,4)">
+              4x4
+            </button>
+            <button class="btn btn-dark m-1 " ngbDropdownItem [title]=titleIndentity (click)="open(size)">
+              other...
+            </button>
+          </div>
+        </div>
         <button type="button" class="btn btn-outline-dark m-1" ngbAutofocus
+          (click)="modal.close('Save click')">Save</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #size let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="n">n</label>
+        <input type="number"  class="form-control" [(ngModel)]="n" (change)="setSize(n, m)" name="n" id="n" aria-describedby="n" placeholder="0">
+      </div>
+      <div class="form-group">
+        <label for="m">m</label>
+        <input type="number"  class="form-control" [(ngModel)]="m" (change)="setSize(n, m)" name="m" id="m" aria-describedby="m" placeholder="0">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="form-group pt-2 text-center">
+        <button type="button" class="btn btn-dark m-1" ngbAutofocus
           (click)="modal.close('Save click')">Save</button>
       </div>
     </div>
