@@ -1,10 +1,8 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatrixService } from '../matrix.service';
-import { faTrash, faCopy, faEdit, faItalic, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { delay } from 'q';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { faTrash, faCopy, faEdit, faSpinner, faTable, faBorderAll } from '@fortawesome/free-solid-svg-icons';
+import { FormGroup } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { faGoogle, faTumblr } from '@fortawesome/free-brands-svg-icons';
 
 
 @Component({
@@ -19,15 +17,11 @@ export class MatrixComponent implements OnInit {
   @Input() public hide: boolean;
   @Input() public show: boolean;
 
+  n; m;
 
   closeResult: string;
   matrixForm: FormGroup;
   demoForm: FormGroup;
-
-  arrayItems: {
-    id: number;
-    title: string;
-  }[];
 
   copyText = 'Copy';
   trashText = 'Clean';
@@ -35,6 +29,7 @@ export class MatrixComponent implements OnInit {
   identityText = 'Identity matrix';
   transText = 'Transposed matrix';
   transformationsText = 'Transform';
+  sizeText = 'Size';
 
   titleClear = 'Clean all matrix';
   titleCopy = 'Copy the matrix';
@@ -45,8 +40,9 @@ export class MatrixComponent implements OnInit {
   iconTrash = faTrash;
   iconCopy = faCopy;
   iconEdit = faEdit;
-
+  iconSize = faBorderAll;
   transform = faSpinner;
+
 
   public colNumber;
   public openSymbol = '[';
@@ -62,6 +58,8 @@ export class MatrixComponent implements OnInit {
 
   constructor(private matrixService: MatrixService, private modalService: NgbModal) {
     this.matrix = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];
+    this.m = this.matrixService.getMatrixRows(this.matrix);
+    this.n = this.matrixService.getMatrixCols(this.matrix);
     this.getColNumber();
     this.setPaddingConfig();
   }
@@ -72,6 +70,19 @@ export class MatrixComponent implements OnInit {
 
     // this.matrixForm.valueChanges.subscribe(console.log);
 
+  }
+
+  setSize(row, col) {
+    if (this.matrixService.validateSize(row, col)) {
+      this.matrix = this.matrixService.setSize(this.matrix, row, col);
+      this.m = this.matrixService.getMatrixRows(this.matrix);
+      this.n = this.matrixService.getMatrixCols(this.matrix);
+    } else {
+      const fixednumbs = this.matrixService.fixSize(this.m, this.n);
+      this.m = fixednumbs[0];
+      this.n = fixednumbs[1];
+      this.setSize(fixednumbs[0], fixednumbs[1]);
+    }
   }
 
   open(content) {
@@ -106,11 +117,11 @@ export class MatrixComponent implements OnInit {
   }
 
   getMatrixRows() {
-    return this.matrix[0].length;
+    return this.matrixService.getMatrixRows(this.matrix);
   }
 
   getMatrixCols() {
-    return this.matrix.length;
+    return this.matrixService.getMatrixCols(this.matrix);
   }
 
   upMatrix() {
@@ -119,13 +130,7 @@ export class MatrixComponent implements OnInit {
   }
 
   cleanMatrix() {
-    let i;
-    const n = this.matrix.length;
-    for (i = 0; i < n; ++i) {
-      for (let j = 0; j < this.matrix[i].length; j++) {
-        this.matrix[i][j] = 0;
-      }
-    }
+    this.matrixService.cleanMatrix(this.matrix);
   }
 
   onChange(newValue, coeficient1, coeficient2) {
@@ -137,7 +142,7 @@ export class MatrixComponent implements OnInit {
   }
 
   identity() {
-
+    this.matrixService.getIdentity(this.matrix);
   }
 
   trans() {

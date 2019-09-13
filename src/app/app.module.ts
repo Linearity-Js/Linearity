@@ -18,7 +18,12 @@ import { SubtractionComponent } from './solver/subtraction/subtraction.component
 import { ScalarMultiplicationComponent } from './solver/scalar-multiplication/scalar-multiplication.component';
 import { InfoComponent } from './info/info.component';
 import { BiblioComponent} from './info/biblio/biblio.component';
-
+import { AdvancedComponent } from './solver/advanced/advanced.component';
+import { BasicComponent } from './solver/basic/basic.component';
+import { GaussComponent } from './solver/gauss/gauss.component';
+import { GaussJordanComponent } from './solver/gauss-jordan/gauss-jordan.component';
+import { DeterminantsComponent } from './solver/determinants/determinants.component';
+import { SrcComponent } from './info/src/src.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +35,13 @@ import { BiblioComponent} from './info/biblio/biblio.component';
     SubtractionComponent,
     ScalarMultiplicationComponent,
     InfoComponent,
-    BiblioComponent
+    BiblioComponent,
+    AdvancedComponent,
+    BasicComponent,
+    GaussComponent,
+    GaussJordanComponent,
+    DeterminantsComponent,
+    SrcComponent
   ],
   entryComponents: [BiblioComponent],
   imports: [

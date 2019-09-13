@@ -1,0 +1,54 @@
+<div class="text-center">
+  {{operationText}}
+  <span [ngSwitch]="operator">
+    <p *ngSwitchCase="'gss'">
+      <app-gauss></app-gauss>
+    </p>
+    <p *ngSwitchCase="'gsj'">
+      <app-gauss-jordan></app-gauss-jordan>
+    </p>
+    <p *ngSwitchCase="'det'">
+      <app-determinants></app-determinants>
+    </p>
+    <p *ngSwitchDefault>
+      Not Found Info
+    </p>
+  </span>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <app-matrix [name]="'A'" [show]=true [edit]=true [matrix]=matrixA></app-matrix>
+  </div>
+</div>
+
+<div class="text-center">
+  <div class="row justify-content-center">
+    <div class="col-7">
+      <app-matrix [name]="'C'" [show]=showResult [edit]=false [matrix]=matrixC></app-matrix>
+    </div>
+  </div>
+</div>
+
+<div class="card border-0">
+  <div class="card-body text-center">
+    <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="">
+      <div class="btn-group" role="group" aria-label="">
+        <button (click)=ngClickGauss() type="button" class="btn btn-dark">
+          Gauss
+        </button>
+        <button (click)="ngClickGaussJordan()" type="button" class="btn btn-dark">
+          Gauss-Jordan
+        </button>
+        <button (click)="ngClickDet()" type="button" class="btn btn-dark">
+          Determinants
+        </button>
+        <button routerLink="/solver/basic" routerLinkActive="active" class="btn btn-dark">
+          <fa-icon [fixedWidth]="true" [icon]=iconBasic></fa-icon>
+          {{basicText}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-floating-button (emiter)="submit()"></app-floating-button>
