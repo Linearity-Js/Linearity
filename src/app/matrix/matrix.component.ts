@@ -1,10 +1,8 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatrixService } from '../matrix.service';
-import { faTrash, faCopy, faEdit, faItalic, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { delay } from 'q';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { faTrash, faCopy, faEdit, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FormGroup } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { faGoogle, faTumblr } from '@fortawesome/free-brands-svg-icons';
 
 
 @Component({
@@ -19,17 +17,10 @@ export class MatrixComponent implements OnInit {
   @Input() public hide: boolean;
   @Input() public show: boolean;
 
-
-  n;
-  m;
+  n; m;
   closeResult: string;
   matrixForm: FormGroup;
   demoForm: FormGroup;
-
-  arrayItems: {
-    id: number;
-    title: string;
-  }[];
 
   copyText = 'Copy';
   trashText = 'Clean';
@@ -78,29 +69,8 @@ export class MatrixComponent implements OnInit {
   }
 
   setSize(row, col) {
-    if (row === col) {
-      switch (row) {
-        case 2:
-          this.matrix = [[0, 0], [0, 0]];
-          break;
-        case 3:
-          this.matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-          break;
-        case 4:
-          this.matrix = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-          break;
-        default:
-          break;
-      }
-    } else {
-      this.matrix = new Array(row);
-      for (let i = 0; i < row; i++) {
-        this.matrix[i] = new Array(col);
-        for (let j = 0; j < col; j++) {
-          this.matrix[i][j] = 0;
-        }
-      }
-    }
+    console.log('calling service');
+    this.matrix = this.matrixService.setSize(this.matrix, row, col);
   }
 
   open(content) {
@@ -135,11 +105,11 @@ export class MatrixComponent implements OnInit {
   }
 
   getMatrixRows() {
-    return this.matrix[0].length;
+    return this.matrixService.getMatrixRows(this.matrix);
   }
 
   getMatrixCols() {
-    return this.matrix.length;
+    return this.matrixService.getMatrixCols(this.matrix);
   }
 
   upMatrix() {
@@ -148,13 +118,7 @@ export class MatrixComponent implements OnInit {
   }
 
   cleanMatrix() {
-    let i;
-    const n = this.matrix.length;
-    for (i = 0; i < n; ++i) {
-      for (let j = 0; j < this.matrix[i].length; j++) {
-        this.matrix[i][j] = 0;
-      }
-    }
+    this.matrixService.cleanMatrix(this.matrix);
   }
 
   onChange(newValue, coeficient1, coeficient2) {
@@ -166,7 +130,7 @@ export class MatrixComponent implements OnInit {
   }
 
   identity() {
-
+    this.matrixService.getIdentity(this.matrix);
   }
 
   trans() {
