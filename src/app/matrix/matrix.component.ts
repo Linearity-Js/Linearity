@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatrixService } from '../matrix.service';
-import { faTrash, faCopy, faEdit, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCopy, faEdit, faSpinner, faTable, faBorderAll } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -18,6 +18,7 @@ export class MatrixComponent implements OnInit {
   @Input() public show: boolean;
 
   n; m;
+
   closeResult: string;
   matrixForm: FormGroup;
   demoForm: FormGroup;
@@ -39,8 +40,9 @@ export class MatrixComponent implements OnInit {
   iconTrash = faTrash;
   iconCopy = faCopy;
   iconEdit = faEdit;
-
+  iconSize = faBorderAll;
   transform = faSpinner;
+
 
   public colNumber;
   public openSymbol = '[';
@@ -56,6 +58,8 @@ export class MatrixComponent implements OnInit {
 
   constructor(private matrixService: MatrixService, private modalService: NgbModal) {
     this.matrix = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];
+    this.m = this.matrixService.getMatrixRows(this.matrix);
+    this.n = this.matrixService.getMatrixCols(this.matrix);
     this.getColNumber();
     this.setPaddingConfig();
   }
@@ -69,8 +73,16 @@ export class MatrixComponent implements OnInit {
   }
 
   setSize(row, col) {
-    console.log('calling service');
-    this.matrix = this.matrixService.setSize(this.matrix, row, col);
+    if (this.matrixService.validateSize(row, col)) {
+      this.matrix = this.matrixService.setSize(this.matrix, row, col);
+      this.m = this.matrixService.getMatrixRows(this.matrix);
+      this.n = this.matrixService.getMatrixCols(this.matrix);
+    } else {
+      const fixednumbs = this.matrixService.fixSize(this.m, this.n);
+      this.m = fixednumbs[0];
+      this.n = fixednumbs[1];
+      this.setSize(fixednumbs[0], fixednumbs[1]);
+    }
   }
 
   open(content) {

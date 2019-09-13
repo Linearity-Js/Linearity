@@ -54,7 +54,7 @@
               <div *ngFor="let row of getMatrix(); let i = index" class="row">
                 <div *ngFor="let coeficient of row; let e = index" class="col p-0">
                   <input disabled placeholder="0" value="{{getMatrix()[i][e]}}" id="{{i}},{{e}}" name="{{i}},{{e}}"
-                    title="{{i}},{{e}}" type="number" class="form-control-plaintext text-center" />
+                    title="{{i}},{{e}}" type="number" class="form-control-plaintext text-center text-truncate" />
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@
           {{trashText}}
         </button> -->
   </div>
-  <ng-template #content  let-modal>
+  <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -140,7 +140,7 @@
               <div *ngFor="let coeficient of row; let e = index" class="col">
                 <input placeholder="0" value="{{getMatrix()[i][e]}}" (change)="onChange($event, [i], [e])"
                   id="{{i}},{{e}}" name="{{i}},{{e}}" title="{{i}},{{e}}" type="number"
-                  class="form-control-plaintext text-center" />
+                  class="form-control-plaintext text-center text-truncate" />
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@
         </div>
         <div class="d-inline-block" ngbDropdown #DropSize="ngbDropdown">
           <button class="btn btn-dark mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="DropSize.open()">
-            <fa-icon [fixedWidth]="true" [icon]=transform></fa-icon>
+            <fa-icon [fixedWidth]="true" [icon]=iconSize></fa-icon>
             {{sizeText}}
           </button>
           <div ngbDropdownMenu aria-labelledby="dropdownManual">
@@ -196,29 +196,39 @@
     </div>
   </ng-template>
 
-  <ng-template #size let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label for="n">n</label>
-        <input type="number"  class="form-control" [(ngModel)]="n" (change)="setSize(n, m)" name="n" id="n" aria-describedby="n" placeholder="0">
+  <ng-template #size let-modalSize>
+    <form>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalSize.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="form-group">
-        <label for="m">m</label>
-        <input type="number"  class="form-control" [(ngModel)]="m" (change)="setSize(n, m)" name="m" id="m" aria-describedby="m" placeholder="0">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="m">m</label>
+              <input type="number" minlength="1" maxlength="1" ngModel required min="1" max="12" class="form-control"
+                [(ngModel)]="m" (change)="setSize(m , n)" name="m" id="m" aria-describedby="m" placeholder="0">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="n">n</label>
+              <input type="number" required min="1" max="12" class="form-control" [(ngModel)]="n"
+                (change)="setSize(m , n)" name="n" id="n" aria-describedby="n" placeholder="0">
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
-    <div class="modal-footer">
-      <div class="form-group pt-2 text-center">
-        <button type="button" class="btn btn-dark m-1" ngbAutofocus
-          (click)="modal.close('Save click')">Save</button>
+      <div class="modal-footer">
+        <div class="form-group pt-2 text-center">
+          <button type="submit" (click)="modalSize.close()" class="btn btn-dark m-1" ngbAutofocus>Save</button>
+        </div>
       </div>
-    </div>
+    </form>
   </ng-template>
 
 </div>

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MatrixService {
+  max = 12;
   matrix = [];
   constructor() { }
 
@@ -12,13 +13,36 @@ export class MatrixService {
   }
 
   getMatrixRows(matrix) {
-    return matrix[0].length;
-  }
-
-  getMatrixCols(matrix) {
     return matrix.length;
   }
 
+  getMatrixCols(matrix) {
+    return matrix[0].length;
+  }
+
+  fixSize(row, col) {
+    let numberRow = row;
+    let numberCol = col;
+    if (row < 1) {
+      numberRow = 1;
+    } else if (row > this.max) {
+      numberRow = this.max;
+    } else {
+      numberRow = 3;
+    }
+    if (col > this.max) {
+      numberCol = this.max;
+    } else if (col < 1) {
+      numberCol = 1;
+    } else {
+      numberCol = 3;
+    }
+    return [numberRow, numberCol];
+  }
+
+  validateSize(row, col) {
+    return (row <= this.max && col <= this.max && ((row >= 1 && col > 1) || (row > 1 && col >= 1)));
+  }
 
   setSize(matrix, row: number, col: number) {
     if (row === col) {
