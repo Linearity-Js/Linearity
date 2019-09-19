@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faInfinity, faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faInfinity, faInfo, faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 
@@ -13,9 +13,11 @@ export class HomeComponent implements OnInit {
   faGithub = faGithub;
   iconSolver = faInfinity;
   iconInfo = faInfo;
+  historyIcon = faBookOpen;
 
   solverText = 'solver';
   infoText = 'about';
+  historyText = 'history';
 
   operationSystem = `+`;
   constructor() { }

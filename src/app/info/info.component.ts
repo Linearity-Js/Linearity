@@ -27,5 +27,4 @@ export class InfoComponent implements OnInit {
     const modalRef = this.modalService.open(BiblioComponent);
   }
 
-
 }
