@@ -6,6 +6,36 @@
   <b>matrix</b> into
   reduced <b>row</b> echelon form.
 </p>
-<button class="btn btn-sm btn-dark">
+<button (click)=open(content) class="btn btn-sm btn-dark">
   see steps
 </button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title bigTitle" id="modal-basic-title">Elimination Process</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+      The elimination process
+      consists of three possible steps which are called elementary row operations:
+    </p>
+    <ul>
+      <li>
+        Swap two rows.
+      </li>
+      <li>
+        Divide a row by a scalar
+      </li>
+      <li>
+        Subtract a multiple of a row from an other row.
+      </li>
+    </ul>
+    The process transfers a given matrix A into a new matrix rref(A)
+
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>

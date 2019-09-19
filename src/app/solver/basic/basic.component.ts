@@ -27,10 +27,14 @@ export class BasicComponent implements OnInit {
   advancedText = 'advenced operations';
   iconAdvanced = faLaptop;
 
+  scalar: number;
+  scalarIsFocus: boolean;
+
   constructor(private matrixService: MatrixService) {
     this.operationSymbol = `+`;
     this.operator = 'add';
     this.showResult = false;
+    this.scalarIsFocus = false;
 
     this.matrixA = [['1', '2', '0', '1'], ['1', '1', '0', '1'], ['1', '2', '3', '1']];
     this.matrixB = [['1', '2', '3', '1'], ['1', '2', '0', '1'], ['1', '2', '0', '1']];
@@ -43,6 +47,10 @@ export class BasicComponent implements OnInit {
     // this.matrix = [['1', '2', '0', '1'], ['1', '1', '2', '1'], ['1', '1', '0', '1'], ['0', '1', '1', '0']];
     this.sameMatrixSize = this.sameSize(this.matrixA, this.matrixB);
     console.log(`same size?: ${this.sameMatrixSize}`);
+  }
+
+  isNumber(num) {
+    return (!isNaN(num) && typeof num !== 'undefined');
   }
 
   sameSize(A, B) {
@@ -92,7 +100,7 @@ export class BasicComponent implements OnInit {
   }
 
   callMul() {
-
+    this.OpMulMatrix(this.matrixB);
   }
 
   OpAddMatrix(A, B) {
@@ -114,6 +122,18 @@ export class BasicComponent implements OnInit {
       this.matrixC[i] = new Array(A[i].length);
       for (let j = 0; j < A[i].length; j++) {
         const element = Number(A[i][j]) - Number(B[i][j]);
+        this.matrixC[i][j] = element;
+      }
+    }
+  }
+
+  OpMulMatrix(A) {
+    this.matrixC = new Array(A.length);
+    for (let i = 0; i < A.length; i++) {
+      const elementA = A[i];
+      this.matrixC[i] = new Array(A[i].length);
+      for (let j = 0; j < A[i].length; j++) {
+        const element = Number(A[i][j]) * this.scalar;
         this.matrixC[i][j] = element;
       }
     }
