@@ -1,6 +1,6 @@
 {
   "name": "lnt",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
