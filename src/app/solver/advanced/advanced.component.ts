@@ -30,6 +30,7 @@ export class AdvancedComponent implements OnInit {
   }
 
   constructor() {
+    this.operator = 'gss';
     this.showResult = false;
 
     this.matrixA = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];

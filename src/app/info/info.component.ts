@@ -11,7 +11,7 @@ import { BiblioComponent } from './biblio/biblio.component';
 export class InfoComponent implements OnInit {
 
   // pjson = require('../../../package.json');
-  pjson = 'B0.4.8';
+  pjson = 'B0.5.0';
   version = '';
   book = faBook;
   code = faCode;
@@ -26,6 +26,5 @@ export class InfoComponent implements OnInit {
   openBio() {
     const modalRef = this.modalService.open(BiblioComponent);
   }
-
 
 }

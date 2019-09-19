@@ -1,1 +1,54 @@
-<p>determinants works!</p>
+<h4 class="bigTitle">
+  Determinant
+</h4>
+<p>
+  Is a function that each <b>square</b> real matrix <b>A</b> is assigned a real number, denoted det(<b>A</b>),
+  satisfying
+  certain properties.
+</p>
+<button (click)=open(content) class="btn btn-sm btn-dark">
+  see math definition
+</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title bigTitle" id="modal-basic-title">Determinant definition</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    Let <b>A</b> be a <i>n</i>x<i>n</i> matrix. Then the <i>determinant</i> of <b>A</b> is defined by
+    the following. If <b>A</b> is 1 x 1 so that <b>A</b> = (a<sub>1,1</sub>), then det(<b>A</b>) = a<sub>1,1</sub> .
+    Otherwise,
+    if <i>n</i> > 1,
+    <br />
+    <!-- <math>
+      sum_(i=1)^n i^3=((n(n+1))/2)^2
+    </math> -->
+
+    i=1
+    ai,1Ai,1, (1)
+    where Ai,j is the (i, j) -cofactor associated with A. In other words, it is the
+    scalar value
+    Ai,j = (−1)i+j det(Mi,j ),
+    where Mi,j is the (n − 1) × (n − 1) matrix obtained from A by removing its
+    i-th row and j -th column. The Mi,j ’s are called the minors of A.
+    In this note, we assume that all matrices are square. We use the notations
+    Ai,j and Mi,j to refer to the cofactors and minors of A. When working
+    1
+    with multiple matrices, we use also use MA
+    i,j to denote the minor Mi,j of A.
+    Likewise, for B a matrix, we use Bi,j and MB
+    i,j to denote the cofactors and
+    minors of B.
+
+  </div>
+  <div class="modal-footer">
+    <div class="form-group pt-2 text-center">
+      <button type="button" class="btn btn-outline-dark m-1" ngbAutofocus
+        (click)="modal.close('Save click')">close</button>
+    </div>
+  </div>
+</ng-template>
