@@ -169,6 +169,21 @@ export class MatrixService {
     return C;
   }
 
+  OpGetGaussJordan(A: Matrix): Matrix {
+    const obj2 = JSON.parse(this.getMatrixDataJSON(A));
+    const js = obj2;
+    let C: Matrix;
+    C = new Matrix(1, `C`, []);
+    try {
+      this.dataRequest.getGaussJordan(js).subscribe(matrixRes =>
+        C.matrix = matrixRes.matrix
+      );
+    } catch (error) {
+      C = new Matrix(0, `undefined`, []);
+    }
+    return C;
+  }
+
 
 
 

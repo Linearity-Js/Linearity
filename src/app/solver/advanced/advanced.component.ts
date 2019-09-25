@@ -49,7 +49,10 @@ export class AdvancedComponent implements OnInit {
   }
 
   callGaussJordan() {
-
+    console.log(`new gauss jordan op`);
+    this.matrixC = null;
+    this.matrixC = this.matrixService.OpGetGaussJordan(this.matrixA);
+    this.showResult = true;
   }
   callDeterminants() {
 
@@ -60,11 +63,11 @@ export class AdvancedComponent implements OnInit {
       case 'gss':
         this.callGauss();
         break;
-      case 'gss':
+      case 'gsj':
         this.callGaussJordan();
         break;
 
-      case 'gss':
+      case 'det':
         this.callDeterminants();
         break;
       default:
