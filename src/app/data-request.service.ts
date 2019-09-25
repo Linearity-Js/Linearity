@@ -30,13 +30,11 @@ export class DataRequestService {
 
   public getGauss(matrix: JSON): Observable<Matrix> {
     this.GaussURL = `${this.generalURL}/getGauss`;
-    console.log(this.GaussURL);
     return this.http.post<Matrix>(this.GaussURL, matrix);
   }
 
   public getGaussJordan(matrix: JSON): Observable<Matrix> {
     this.GaussURL = `${this.generalURL}/getGaussJordan`;
-    console.log(this.GaussURL);
     return this.http.post<Matrix>(this.GaussURL, matrix);
   }
 }

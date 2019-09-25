@@ -56,7 +56,6 @@ export class MatrixComponent implements OnInit {
 
   constructor(private matrixService: MatrixService, private modalService: NgbModal) {
     this.matrix = new Matrix(1, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
-    console.log(this.matrix.matrix);
     // this.matrix.data = [[1, 2, 0], [1, 1, 0], [1, 2, 3]];
     this.m = this.matrixService.getMatrixRows(this.matrix);
     this.n = this.matrixService.getMatrixCols(this.matrix);
@@ -69,10 +68,6 @@ export class MatrixComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // this.matrixForm = this.formBuilder.group(this.matrix);
-
-    // this.matrixForm.valueChanges.subscribe(console.log);
 
   }
 
@@ -138,11 +133,7 @@ export class MatrixComponent implements OnInit {
   }
 
   onChange(newValue, coeficient1, coeficient2) {
-    this.matrix[coeficient1][coeficient2] = Number(newValue.target.value);
-    // this.matrix[coeficient1].splice(coeficient1, 1, newValue.target.value);
-    // sconsole.info(this.matrix);
-    // tslint:disable-next-line:max-line-length
-    console.log(`c1: ${coeficient1}`, `c2: ${coeficient2}`, `real value: ${this.matrix[coeficient1][coeficient2]}`, `expected value: ${newValue.target.value}`);
+    this.matrix.matrix[coeficient1][coeficient2] = Number(newValue.target.value);
   }
 
   identity() {
@@ -152,6 +143,7 @@ export class MatrixComponent implements OnInit {
   trans() {
 
   }
+
   setPaddingConfig() {
 
     switch (this.getMatrixRows()) {

@@ -85,8 +85,6 @@ export class MatrixService {
 
   setMatrix(matrix: Matrix) {
     this.matrix = matrix;
-    // console.log('the matrix is correctly up!');
-    // console.log(this.matrix);
   }
 
   cleanMatrix(matrix: Matrix) {
@@ -184,13 +182,9 @@ export class MatrixService {
     return C;
   }
 
-
-
-
   public getMatrixDataJSON(matrix: Matrix): string {
     return `{"matrix": [${this.getDataJson(matrix)}]}`;
   }
-
 
   private getDataJson(matrix: Matrix): string {
     let dataText = ``;
