@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus, faMinus, faStarOfLife, faLaptop } from '@fortawesome/free-solid-svg-icons';
 import { MatrixService } from 'src/app/matrix.service';
+import { Matrix } from 'src/app/matrix.model';
 
 @Component({
   selector: 'app-basic',
@@ -10,9 +11,10 @@ import { MatrixService } from 'src/app/matrix.service';
 
 export class BasicComponent implements OnInit {
 
-  matrixA;
-  matrixB;
-  matrixC; // Auxiliar
+  matrixA: Matrix;
+  matrixB: Matrix;
+  matrixC: Matrix;
+
   showResult;
 
   operationSymbol = `+`;
@@ -36,17 +38,8 @@ export class BasicComponent implements OnInit {
     this.showResult = false;
     this.scalarIsFocus = false;
 
-    this.matrixA = [['1', '2', '0', '1'], ['1', '1', '0', '1'], ['1', '2', '3', '1']];
-    this.matrixB = [['1', '2', '3', '1'], ['1', '2', '0', '1'], ['1', '2', '0', '1']];
-
-    this.matrixA = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];
-    this.matrixB = [['3', '7', '0'], ['0', '2', '1'], ['4', '0', '1']];
-
-    this.OpAddMatrix(this.matrixA, this.matrixB);
-    console.log(this.matrixC);
-    // this.matrix = [['1', '2', '0', '1'], ['1', '1', '2', '1'], ['1', '1', '0', '1'], ['0', '1', '1', '0']];
-    this.sameMatrixSize = this.sameSize(this.matrixA, this.matrixB);
-    console.log(`same size?: ${this.sameMatrixSize}`);
+    this.matrixA = new Matrix(1, `A`, [[1.0, 2.0, 0.0, 1.0], [1.0, 1.0, 0.0, 1.0], [1.0, 2.0, 3.0, 1.0]]);
+    this.matrixB = new Matrix(2, `B`, [[1.0, 2.0, 3.0, 1.0], [1.0, 2.0, 0.0, 1.0], [1.0, 2.0, 0.0, 1.0]]);
   }
 
   isNumber(num) {
@@ -92,51 +85,15 @@ export class BasicComponent implements OnInit {
   }
 
   callAdd() {
-    this.OpAddMatrix(this.matrixA, this.matrixB);
+    this.matrixC = this.matrixService.OpAddMatrix(this.matrixA, this.matrixB);
   }
 
   callSub() {
-    this.OpSubMatrix(this.matrixA, this.matrixB);
+    this.matrixC = this.matrixService.OpSubMatrix(this.matrixA, this.matrixB);
   }
 
   callMul() {
-    this.OpMulMatrix(this.matrixB);
-  }
-
-  OpAddMatrix(A, B) {
-    this.matrixC = new Array(A.length);
-    for (let i = 0; i < A.length; i++) {
-      const elementA = A[i];
-      this.matrixC[i] = new Array(A[i].length);
-      for (let j = 0; j < A[i].length; j++) {
-        const element = Number(A[i][j]) + Number(B[i][j]);
-        this.matrixC[i][j] = element;
-      }
-    }
-  }
-
-  OpSubMatrix(A, B) {
-    this.matrixC = new Array(A.length);
-    for (let i = 0; i < A.length; i++) {
-      const elementA = A[i];
-      this.matrixC[i] = new Array(A[i].length);
-      for (let j = 0; j < A[i].length; j++) {
-        const element = Number(A[i][j]) - Number(B[i][j]);
-        this.matrixC[i][j] = element;
-      }
-    }
-  }
-
-  OpMulMatrix(A) {
-    this.matrixC = new Array(A.length);
-    for (let i = 0; i < A.length; i++) {
-      const elementA = A[i];
-      this.matrixC[i] = new Array(A[i].length);
-      for (let j = 0; j < A[i].length; j++) {
-        const element = Number(A[i][j]) * this.scalar;
-        this.matrixC[i][j] = element;
-      }
-    }
+    this.matrixC = this.matrixService.OpMulMatrix(this.matrixB, this.scalar);
   }
 
   ngOnInit() {

@@ -1,23 +1,35 @@
 import { Injectable } from '@angular/core';
+import { Matrix } from './matrix.model';
+import { DataRequestService } from './data-request.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MatrixService {
+
+  matrix: Matrix;
   max = 12;
-  matrix = [];
-  constructor() { }
+
+  constructor(private dataRequest: DataRequestService) { }
 
   getValues() {
-    return this.matrix;
+    return this.matrix.data;
   }
 
-  getMatrixRows(matrix) {
-    return matrix.length;
+  getMatrixRows(matrix: Matrix): number {
+    try {
+      return matrix.data.length;
+    } catch (error) {
+      return 0;
+    }
   }
 
-  getMatrixCols(matrix) {
-    return matrix[0].length;
+  getMatrixCols(matrix: Matrix): number {
+    try {
+      return matrix.data[0].length;
+    } catch (error) {
+      return 0;
+    }
   }
 
   fixSize(row, col) {
@@ -44,45 +56,45 @@ export class MatrixService {
     return (row <= this.max && col <= this.max && ((row >= 1 && col > 1) || (row > 1 && col >= 1)));
   }
 
-  setSize(matrix, row: number, col: number) {
+  setSize(data, row: number, col: number) {
     if (row === col) {
       switch (row) {
         case 2:
-          matrix = [[0, 0], [0, 0]];
+          data = [[0, 0], [0, 0]];
           break;
         case 3:
-          matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+          data = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
           break;
         case 4:
-          matrix = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+          data = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
           break;
         default:
           break;
       }
     } else {
-      matrix = new Array(row);
+      data = new Array(row);
       for (let i = 0; i < row; i++) {
-        matrix[i] = new Array(col);
+        data[i] = new Array(col);
         for (let j = 0; j < col; j++) {
-          matrix[i][j] = 0;
+          data[i][j] = 0;
         }
       }
     }
-    return matrix;
+    return data;
   }
 
-  setMatrix(matrix) {
+  setMatrix(matrix: Matrix) {
     this.matrix = matrix;
-    console.log('the matrix is correctly up!');
-    console.log(this.matrix);
+    // console.log('the matrix is correctly up!');
+    // console.log(this.matrix);
   }
 
-  cleanMatrix(matrix) {
+  cleanMatrix(matrix: Matrix) {
     let i;
-    const n = matrix.length;
+    const n = matrix.data.length;
     for (i = 0; i < n; ++i) {
-      for (let j = 0; j < matrix[i].length; j++) {
-        matrix[i][j] = 0;
+      for (let j = 0; j < matrix.data[i].length; j++) {
+        matrix.data[i][j] = 0;
       }
     }
     return matrix;
@@ -104,5 +116,84 @@ export class MatrixService {
       position++;
     }
     return matrix;
+  }
+
+  OpAddMatrix(A: Matrix, B: Matrix): Matrix {
+    const matrixC = new Matrix(0, `C`, new Array(A.data.length));
+    for (let i = 0; i < A.data.length; i++) {
+      matrixC.data[i] = new Array(A.data[i].length);
+      for (let j = 0; j < A.data[i].length; j++) {
+        const element = Number(A.data[i][j]) + Number(B.data[i][j]);
+        matrixC.data[i][j] = element;
+      }
+    }
+    return matrixC;
+  }
+
+  OpSubMatrix(A: Matrix, B: Matrix): Matrix {
+    const matrixC = new Matrix(0, `C`, new Array(A.data.length));
+    for (let i = 0; i < A.data.length; i++) {
+      matrixC.data[i] = new Array(A.data[i].length);
+      for (let j = 0; j < A.data[i].length; j++) {
+        const element = Number(A.data[i][j]) - Number(B.data[i][j]);
+        matrixC.data[i][j] = element;
+      }
+    }
+    return matrixC;
+  }
+
+  OpMulMatrix(A: Matrix, scalar: number): Matrix {
+    const matrixC = new Matrix(0, `C`, new Array(A.data.length));
+    for (let i = 0; i < A.data.length; i++) {
+      matrixC.data[i] = new Array(A.data[i].length);
+      for (let j = 0; j < A.data[i].length; j++) {
+        const element = Number(A.data[i][j]) * scalar;
+        matrixC.data[i][j] = element;
+      }
+    }
+    return matrixC;
+  }
+
+  OpGetGauss(A: Matrix): Matrix {
+    const obj2 = JSON.parse(this.getMatrixDataJSON(A));
+    const js = obj2;
+
+    this.dataRequest.getGauss(js).subscribe( val => console.log(val));
+    return A;
+  }
+
+
+  public getMatrixDataJSON(matrix: Matrix): string {
+    return `{"matrix": [${this.getDataJson(matrix)}]}`;
+  }
+
+
+  private getDataJson(matrix: Matrix): string {
+    let dataText = ``;
+    let r;
+    // tslint:disable-next-line:prefer-for-of
+    for (let index = 0; index < matrix.data.length; index++) {
+      r = matrix.data[index];
+
+      if (index === 0) {
+        dataText = `${dataText} [`;
+      } else {
+        dataText = `${dataText}, [`;
+      }
+
+      // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < r.length; j++) {
+
+        if (j !== 0) {
+          dataText = `${dataText},`;
+        }
+
+        const element = r[j];
+
+        dataText = `${dataText} ${element}`;
+      }
+      dataText = `${dataText} ]`;
+    }
+    return dataText;
   }
 }

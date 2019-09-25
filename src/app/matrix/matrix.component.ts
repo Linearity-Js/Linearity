@@ -3,6 +3,7 @@ import { MatrixService } from '../matrix.service';
 import { faTrash, faCopy, faEdit, faSpinner, faTable, faBorderAll } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Matrix } from '../matrix.model';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MatrixComponent implements OnInit {
   @Input() public name: string;
-  @Input() private matrix: any;
+  @Input() private matrix: Matrix;
   @Input() public edit: boolean;
   @Input() public hide: boolean;
   @Input() public show: boolean;
@@ -52,16 +53,19 @@ export class MatrixComponent implements OnInit {
   public padding2 = 5;
   public bracket = 2;
 
-  getMatrix() {
-    return this.matrix;
-  }
 
   constructor(private matrixService: MatrixService, private modalService: NgbModal) {
-    this.matrix = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];
+    this.matrix = new Matrix(1, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
+    console.log(this.matrix.data);
+    // this.matrix.data = [[1, 2, 0], [1, 1, 0], [1, 2, 3]];
     this.m = this.matrixService.getMatrixRows(this.matrix);
     this.n = this.matrixService.getMatrixCols(this.matrix);
     this.getColNumber();
     this.setPaddingConfig();
+  }
+
+  getMatrix() {
+    return this.matrix.data;
   }
 
   ngOnInit() {
@@ -74,7 +78,7 @@ export class MatrixComponent implements OnInit {
 
   setSize(row, col) {
     if (this.matrixService.validateSize(row, col)) {
-      this.matrix = this.matrixService.setSize(this.matrix, row, col);
+      this.matrix.data = this.matrixService.setSize(this.matrix, row, col);
       this.m = this.matrixService.getMatrixRows(this.matrix);
       this.n = this.matrixService.getMatrixCols(this.matrix);
     } else {
@@ -105,10 +109,10 @@ export class MatrixComponent implements OnInit {
 
 
   getColNumber() {
-    if (this.matrix.length >= 1 && this.matrix.length <= 6 && this.matrix.length !== 5) {
-      this.colNumber = 12 / this.matrix.length;
+    if (this.matrix.data.length >= 1 && this.matrix.data.length <= 6 && this.matrix.data.length !== 5) {
+      this.colNumber = 12 / this.matrix.data.length;
     } else {
-      if (this.matrix.length === 5) {
+      if (this.matrix.data.length === 5) {
         this.colNumber = 2;
       } else {
         this.colNumber = 1;
