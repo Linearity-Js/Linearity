@@ -24,6 +24,8 @@ import { GaussComponent } from './solver/gauss/gauss.component';
 import { GaussJordanComponent } from './solver/gauss-jordan/gauss-jordan.component';
 import { DeterminantsComponent } from './solver/determinants/determinants.component';
 import { SrcComponent } from './info/src/src.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,7 @@ import { SrcComponent } from './info/src/src.component';
     FormsModule,
     ReactiveFormsModule,
     MathJaxModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
