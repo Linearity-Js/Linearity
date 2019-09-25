@@ -13,12 +13,12 @@ export class MatrixService {
   constructor(private dataRequest: DataRequestService) { }
 
   getValues() {
-    return this.matrix.data;
+    return this.matrix.matrix;
   }
 
   getMatrixRows(matrix: Matrix): number {
     try {
-      return matrix.data.length;
+      return matrix.matrix.length;
     } catch (error) {
       return 0;
     }
@@ -26,7 +26,7 @@ export class MatrixService {
 
   getMatrixCols(matrix: Matrix): number {
     try {
-      return matrix.data[0].length;
+      return matrix.matrix[0].length;
     } catch (error) {
       return 0;
     }
@@ -91,10 +91,10 @@ export class MatrixService {
 
   cleanMatrix(matrix: Matrix) {
     let i;
-    const n = matrix.data.length;
+    const n = matrix.matrix.length;
     for (i = 0; i < n; ++i) {
-      for (let j = 0; j < matrix.data[i].length; j++) {
-        matrix.data[i][j] = 0;
+      for (let j = 0; j < matrix.matrix[i].length; j++) {
+        matrix.matrix[i][j] = 0;
       }
     }
     return matrix;
@@ -119,36 +119,36 @@ export class MatrixService {
   }
 
   OpAddMatrix(A: Matrix, B: Matrix): Matrix {
-    const matrixC = new Matrix(0, `C`, new Array(A.data.length));
-    for (let i = 0; i < A.data.length; i++) {
-      matrixC.data[i] = new Array(A.data[i].length);
-      for (let j = 0; j < A.data[i].length; j++) {
-        const element = Number(A.data[i][j]) + Number(B.data[i][j]);
-        matrixC.data[i][j] = element;
+    const matrixC = new Matrix(0, `C`, new Array(A.matrix.length));
+    for (let i = 0; i < A.matrix.length; i++) {
+      matrixC.matrix[i] = new Array(A.matrix[i].length);
+      for (let j = 0; j < A.matrix[i].length; j++) {
+        const element = Number(A.matrix[i][j]) + Number(B.matrix[i][j]);
+        matrixC.matrix[i][j] = element;
       }
     }
     return matrixC;
   }
 
   OpSubMatrix(A: Matrix, B: Matrix): Matrix {
-    const matrixC = new Matrix(0, `C`, new Array(A.data.length));
-    for (let i = 0; i < A.data.length; i++) {
-      matrixC.data[i] = new Array(A.data[i].length);
-      for (let j = 0; j < A.data[i].length; j++) {
-        const element = Number(A.data[i][j]) - Number(B.data[i][j]);
-        matrixC.data[i][j] = element;
+    const matrixC = new Matrix(0, `C`, new Array(A.matrix.length));
+    for (let i = 0; i < A.matrix.length; i++) {
+      matrixC.matrix[i] = new Array(A.matrix[i].length);
+      for (let j = 0; j < A.matrix[i].length; j++) {
+        const element = Number(A.matrix[i][j]) - Number(B.matrix[i][j]);
+        matrixC.matrix[i][j] = element;
       }
     }
     return matrixC;
   }
 
   OpMulMatrix(A: Matrix, scalar: number): Matrix {
-    const matrixC = new Matrix(0, `C`, new Array(A.data.length));
-    for (let i = 0; i < A.data.length; i++) {
-      matrixC.data[i] = new Array(A.data[i].length);
-      for (let j = 0; j < A.data[i].length; j++) {
-        const element = Number(A.data[i][j]) * scalar;
-        matrixC.data[i][j] = element;
+    const matrixC = new Matrix(0, `C`, new Array(A.matrix.length));
+    for (let i = 0; i < A.matrix.length; i++) {
+      matrixC.matrix[i] = new Array(A.matrix[i].length);
+      for (let j = 0; j < A.matrix[i].length; j++) {
+        const element = Number(A.matrix[i][j]) * scalar;
+        matrixC.matrix[i][j] = element;
       }
     }
     return matrixC;
@@ -157,10 +157,19 @@ export class MatrixService {
   OpGetGauss(A: Matrix): Matrix {
     const obj2 = JSON.parse(this.getMatrixDataJSON(A));
     const js = obj2;
-
-    this.dataRequest.getGauss(js).subscribe( val => console.log(val));
-    return A;
+    let C: Matrix;
+    C = new Matrix(1, `C`, []);
+    try {
+      this.dataRequest.getGauss(js).subscribe(matrixRes =>
+        C.matrix = matrixRes.matrix
+      );
+    } catch (error) {
+      C = new Matrix(0, `undefined`, []);
+    }
+    return C;
   }
+
+
 
 
   public getMatrixDataJSON(matrix: Matrix): string {
@@ -172,8 +181,8 @@ export class MatrixService {
     let dataText = ``;
     let r;
     // tslint:disable-next-line:prefer-for-of
-    for (let index = 0; index < matrix.data.length; index++) {
-      r = matrix.data[index];
+    for (let index = 0; index < matrix.matrix.length; index++) {
+      r = matrix.matrix[index];
 
       if (index === 0) {
         dataText = `${dataText} [`;

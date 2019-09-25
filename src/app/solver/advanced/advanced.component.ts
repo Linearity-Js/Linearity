@@ -35,7 +35,7 @@ export class AdvancedComponent implements OnInit {
     this.operator = 'gss';
     this.showResult = false;
 
-    this.matrixA = new Matrix(1, `A`, [[0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 1.0]]);
+    this.matrixA = new Matrix(1, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0], [0.0, 2.0, 2.0, 1.0]]);
   }
 
   callGauss() {

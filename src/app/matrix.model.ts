@@ -2,12 +2,12 @@ export class Matrix {
 
     id: number;
     name: string;
-    data: number[][];
+    matrix: number[][];
 
     // tslint:disable-next-line:max-line-length
-    constructor(id: number, name: string, data: any) {
+    constructor(id: number, name: string, matrix: any) {
         this.id = id;
         this.name = name;
-        this.data = data;
+        this.matrix = matrix;
     }
 }

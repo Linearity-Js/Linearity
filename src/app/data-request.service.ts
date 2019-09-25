@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Matrix } from './matrix.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +28,10 @@ export class DataRequestService {
       .catch(() => console.log(`Can’t access  ${testUrl} response. Blocked by browser?`));
   }
 
-  public getGauss(matrix: JSON): Observable<object> {
+  public getGauss(matrix: JSON): Observable<Matrix> {
     console.log('init post request');
     this.GaussURL = `${this.generalURL}/getGauss`;
     console.log(this.GaussURL);
-    return this.http.post<any>(this.GaussURL, matrix);
+    return this.http.post<Matrix>(this.GaussURL, matrix);
   }
 }
