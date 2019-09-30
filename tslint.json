@@ -14,14 +14,12 @@
       "attribute",
       "app",
       "camelCase",
-      "mathjax"
     ],
     "component-selector": [
       true,
       "element",
       [
         "app",
-        "mathjax"
       ],
       "kebab-case"
     ],
