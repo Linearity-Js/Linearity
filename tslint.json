@@ -13,12 +13,16 @@
       true,
       "attribute",
       "app",
-      "camelCase"
+      "camelCase",
+      "mathjax"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      [
+        "app",
+        "mathjax"
+      ],
       "kebab-case"
     ],
     "import-blacklist": [

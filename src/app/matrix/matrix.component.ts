@@ -3,6 +3,7 @@ import { MatrixService } from '../matrix.service';
 import { faTrash, faCopy, faEdit, faSpinner, faTable, faBorderAll } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Matrix } from '../matrix.model';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MatrixComponent implements OnInit {
   @Input() public name: string;
-  @Input() private matrix: any;
+  @Input() private matrix: Matrix;
   @Input() public edit: boolean;
   @Input() public hide: boolean;
   @Input() public show: boolean;
@@ -52,29 +53,27 @@ export class MatrixComponent implements OnInit {
   public padding2 = 5;
   public bracket = 2;
 
-  getMatrix() {
-    return this.matrix;
-  }
 
   constructor(private matrixService: MatrixService, private modalService: NgbModal) {
-    this.matrix = [['1', '2', '0'], ['1', '1', '0'], ['1', '2', '3']];
+    this.matrix = new Matrix(1, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
+    // this.matrix.data = [[1, 2, 0], [1, 1, 0], [1, 2, 3]];
     this.m = this.matrixService.getMatrixRows(this.matrix);
     this.n = this.matrixService.getMatrixCols(this.matrix);
     this.getColNumber();
     this.setPaddingConfig();
   }
 
+  getMatrix() {
+    return this.matrix.matrix;
+  }
+
   ngOnInit() {
-
-    // this.matrixForm = this.formBuilder.group(this.matrix);
-
-    // this.matrixForm.valueChanges.subscribe(console.log);
 
   }
 
   setSize(row, col) {
     if (this.matrixService.validateSize(row, col)) {
-      this.matrix = this.matrixService.setSize(this.matrix, row, col);
+      this.matrix.matrix = this.matrixService.setSize(this.matrix, row, col);
       this.m = this.matrixService.getMatrixRows(this.matrix);
       this.n = this.matrixService.getMatrixCols(this.matrix);
     } else {
@@ -105,10 +104,10 @@ export class MatrixComponent implements OnInit {
 
 
   getColNumber() {
-    if (this.matrix.length >= 1 && this.matrix.length <= 6 && this.matrix.length !== 5) {
-      this.colNumber = 12 / this.matrix.length;
+    if (this.matrix.matrix.length >= 1 && this.matrix.matrix.length <= 6 && this.matrix.matrix.length !== 5) {
+      this.colNumber = 12 / this.matrix.matrix.length;
     } else {
-      if (this.matrix.length === 5) {
+      if (this.matrix.matrix.length === 5) {
         this.colNumber = 2;
       } else {
         this.colNumber = 1;
@@ -134,11 +133,7 @@ export class MatrixComponent implements OnInit {
   }
 
   onChange(newValue, coeficient1, coeficient2) {
-    this.matrix[coeficient1][coeficient2] = Number(newValue.target.value);
-    // this.matrix[coeficient1].splice(coeficient1, 1, newValue.target.value);
-    // sconsole.info(this.matrix);
-    // tslint:disable-next-line:max-line-length
-    console.log(`c1: ${coeficient1}`, `c2: ${coeficient2}`, `real value: ${this.matrix[coeficient1][coeficient2]}`, `expected value: ${newValue.target.value}`);
+    this.matrix.matrix[coeficient1][coeficient2] = Number(newValue.target.value);
   }
 
   identity() {
@@ -148,6 +143,7 @@ export class MatrixComponent implements OnInit {
   trans() {
 
   }
+
   setPaddingConfig() {
 
     switch (this.getMatrixRows()) {
