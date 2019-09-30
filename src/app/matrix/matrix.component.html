@@ -1,4 +1,4 @@
-<div *ngIf="show">
+<div *ngIf="showMatrix">
   <div class="card border-0">
     <div class="row">
       <div class="col-{{bracket}}">
@@ -232,3 +232,6 @@
   </ng-template>
 
 </div>
+<ng-container *ngIf="showMessage;">
+  <app-message [message]=message></app-message>
+</ng-container>

@@ -25,6 +25,7 @@ import { GaussJordanComponent } from './solver/gauss-jordan/gauss-jordan.compone
 import { DeterminantsComponent } from './solver/determinants/determinants.component';
 import { SrcComponent } from './info/src/src.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MessageComponent } from './matrix/message/message.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     GaussComponent,
     GaussJordanComponent,
     DeterminantsComponent,
-    SrcComponent
+    SrcComponent,
+    MessageComponent
   ],
   entryComponents: [BiblioComponent],
   imports: [

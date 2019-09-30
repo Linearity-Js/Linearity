@@ -86,14 +86,18 @@ export class BasicComponent implements OnInit {
 
   callAdd() {
     this.matrixC = this.matrixService.OpAddMatrix(this.matrixA, this.matrixB);
+    this.showResult = this.matrixService.validMatrix(this.matrixC);
+
   }
 
   callSub() {
     this.matrixC = this.matrixService.OpSubMatrix(this.matrixA, this.matrixB);
+    this.showResult = this.matrixService.validMatrix(this.matrixC);
   }
 
   callMul() {
     this.matrixC = this.matrixService.OpMulMatrix(this.matrixB, this.scalar);
+    this.showResult = this.matrixService.validMatrix(this.matrixC);
   }
 
   ngOnInit() {

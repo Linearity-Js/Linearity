@@ -56,6 +56,12 @@ export class MatrixService {
     return (row <= this.max && col <= this.max && ((row >= 1 && col > 1) || (row > 1 && col >= 1)));
   }
 
+  public validMatrix(m: Matrix): boolean {
+    let c1: boolean;
+    c1 = this.validateSize(this.getMatrixCols(m), this.getMatrixRows(m));
+    return (c1);
+  }
+
   setSize(data, row: number, col: number) {
     if (row === col) {
       switch (row) {
@@ -153,31 +159,46 @@ export class MatrixService {
   }
 
   OpGetGauss(A: Matrix): Matrix {
-    const obj2 = JSON.parse(this.getMatrixDataJSON(A));
-    const js = obj2;
     let C: Matrix;
-    C = new Matrix(1, `C`, []);
-    try {
-      this.dataRequest.getGauss(js).subscribe(matrixRes =>
-        C.matrix = matrixRes.matrix
-      );
-    } catch (error) {
+    if (this.dataRequest.isOnline()) {
+      const obj2 = JSON.parse(this.getMatrixDataJSON(A));
+      const js = obj2;
+      C = new Matrix(1, `C`, []);
+      try {
+        this.dataRequest.getGauss(js).subscribe(matrixRes =>
+          C.matrix = matrixRes.matrix
+        );
+      } catch (error) {
+        C = new Matrix(0, `undefined`, []);
+        C.setMessage(`error: ${error}`);
+      }
+    } else {
       C = new Matrix(0, `undefined`, []);
+      C.setMessage(this.dataRequest.getMessage());
     }
     return C;
   }
 
   OpGetGaussJordan(A: Matrix): Matrix {
-    const obj2 = JSON.parse(this.getMatrixDataJSON(A));
-    const js = obj2;
+
     let C: Matrix;
-    C = new Matrix(1, `C`, []);
-    try {
-      this.dataRequest.getGaussJordan(js).subscribe(matrixRes =>
-        C.matrix = matrixRes.matrix
-      );
-    } catch (error) {
+
+    if (this.dataRequest.isOnline()) {
+      const obj2 = JSON.parse(this.getMatrixDataJSON(A));
+      const js = obj2;
+      C = new Matrix(1, `C`, []);
+      try {
+        this.dataRequest.getGaussJordan(js).subscribe(matrixRes =>
+          C.matrix = matrixRes.matrix
+        );
+      } catch (error) {
+        C = new Matrix(0, `undefined`, []);
+        C.setMessage(`error: ${error}`);
+        console.log(`error de desconexion`)
+      }
+    } else {
       C = new Matrix(0, `undefined`, []);
+      C.setMessage(this.dataRequest.getMessage());
     }
     return C;
   }

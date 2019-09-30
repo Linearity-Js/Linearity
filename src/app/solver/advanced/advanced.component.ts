@@ -39,11 +39,13 @@ export class AdvancedComponent implements OnInit {
 
   callGauss() {
     this.matrixC = this.matrixService.OpGetGauss(this.matrixA);
+    console.log(this.matrixC.message);
     this.showResult = true;
   }
 
   callGaussJordan() {
     this.matrixC = this.matrixService.OpGetGaussJordan(this.matrixA);
+    console.log(this.matrixC.message);
     this.showResult = true;
   }
 
@@ -52,6 +54,7 @@ export class AdvancedComponent implements OnInit {
   }
 
   submit() {
+    this.showResult = true;
     switch (this.operator) {
       case 'gss':
         this.callGauss();
