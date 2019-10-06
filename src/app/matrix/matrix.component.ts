@@ -60,7 +60,7 @@ export class MatrixComponent implements OnInit {
 
 
   constructor(private matrixService: MatrixService, private modalService: NgbModal, alertConfig: NgbAlertConfig) {
-    this.matrix = new Matrix(1, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
+    this.matrix = new Matrix(200, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
     // this.matrix.data = [[1, 2, 0], [1, 1, 0], [1, 2, 3]];
     this.m = this.matrixService.getMatrixRows(this.matrix);
     this.n = this.matrixService.getMatrixCols(this.matrix);
@@ -75,12 +75,11 @@ export class MatrixComponent implements OnInit {
 
   private setVisible(visible: boolean) {
     if (this.show) {
-      if (visible) {
+      if (visible && this.matrix.getStatus() == 200) {
         this.showMessage = false;
         this.showMatrix = true;
       } else {
         this.message = this.matrix.message;
-        console.log(this.matrix.message);
         this.showMessage = true;
         this.showMatrix = false;
       }
@@ -101,7 +100,7 @@ export class MatrixComponent implements OnInit {
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnChanges(changes: SimpleChanges): void {
-    this.setVisible(this.matrixService.validMatrix(this.matrix));
+    this.setVisible(true);
   }
 
   setSize(row, col) {

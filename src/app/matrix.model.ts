@@ -1,6 +1,6 @@
 export class Matrix {
 
-    public status: number;
+    private status: number;
     public message: string;
     public name: string;
     public matrix: number[][];
@@ -14,5 +14,13 @@ export class Matrix {
 
     setMessage(message: string) {
         this.message = message;
+    }
+
+    setStatus(status: number){
+        this.status = status;
+    }
+
+    getStatus(){
+        return this.status;
     }
 }

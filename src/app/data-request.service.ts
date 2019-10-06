@@ -26,8 +26,7 @@ export class DataRequestService {
   }
 
   public isOnline(): boolean {
-    const testUrl = `${this.generalURL}`;
-    const response = this.testService(testUrl);
+    const response = this.testService();
     if (response) {
       this.message = this.onlineMessage;
     } else {
@@ -40,17 +39,20 @@ export class DataRequestService {
     return this.message;
   }
 
-  private testService(url: string): boolean {
+  private testService(): boolean {
     let c;
     try {
-      fetch(url)
-        .then(response => response.text())
-        .then(contents => c = true)
-        .catch(() => c = false);
+      this.ping();
+      c = true;
     } catch (error) {
       c = false;
     }
     return c;
+  }
+
+  public ping(): Observable<Matrix> {
+    const testUrl = `${this.generalURL}`;
+    return this.http.get<Matrix>(testUrl);
   }
 
   public getGauss(matrix: JSON): Observable<Matrix> {
