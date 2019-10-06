@@ -56,6 +56,12 @@ export class MatrixService {
     return (row <= this.max && col <= this.max && ((row >= 1 && col > 1) || (row > 1 && col >= 1)));
   }
 
+  public validMatrix(m: Matrix): boolean {
+    let c1: boolean;
+    c1 = this.validateSize(this.getMatrixCols(m), this.getMatrixRows(m));
+    return (c1);
+  }
+
   setSize(data, row: number, col: number) {
     if (row === col) {
       switch (row) {
@@ -117,7 +123,7 @@ export class MatrixService {
   }
 
   OpAddMatrix(A: Matrix, B: Matrix): Matrix {
-    const matrixC = new Matrix(0, `C`, new Array(A.matrix.length));
+    const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     for (let i = 0; i < A.matrix.length; i++) {
       matrixC.matrix[i] = new Array(A.matrix[i].length);
       for (let j = 0; j < A.matrix[i].length; j++) {
@@ -129,7 +135,7 @@ export class MatrixService {
   }
 
   OpSubMatrix(A: Matrix, B: Matrix): Matrix {
-    const matrixC = new Matrix(0, `C`, new Array(A.matrix.length));
+    const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     for (let i = 0; i < A.matrix.length; i++) {
       matrixC.matrix[i] = new Array(A.matrix[i].length);
       for (let j = 0; j < A.matrix[i].length; j++) {
@@ -141,7 +147,7 @@ export class MatrixService {
   }
 
   OpMulMatrix(A: Matrix, scalar: number): Matrix {
-    const matrixC = new Matrix(0, `C`, new Array(A.matrix.length));
+    const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     for (let i = 0; i < A.matrix.length; i++) {
       matrixC.matrix[i] = new Array(A.matrix[i].length);
       for (let j = 0; j < A.matrix[i].length; j++) {
@@ -153,31 +159,53 @@ export class MatrixService {
   }
 
   OpGetGauss(A: Matrix): Matrix {
-    const obj2 = JSON.parse(this.getMatrixDataJSON(A));
-    const js = obj2;
     let C: Matrix;
-    C = new Matrix(1, `C`, []);
-    try {
-      this.dataRequest.getGauss(js).subscribe(matrixRes =>
-        C.matrix = matrixRes.matrix
-      );
-    } catch (error) {
+    if (this.dataRequest.isOnline()) {
+      const obj2 = JSON.parse(this.getMatrixDataJSON(A));
+      const js = obj2;
+      C = new Matrix(0, `C`, []);
+      try {
+        this.dataRequest.getGauss(js).subscribe(matrixRes =>
+          C.matrix = matrixRes.matrix
+        );
+        C.setMessage(`succesful operation`);
+        C.setStatus(200);
+      } catch (error) {
+        C = new Matrix(0, `undefined`, []);
+        C.setMessage(`error: ${error}`);
+        C.setStatus(404);
+      }
+    } else {
       C = new Matrix(0, `undefined`, []);
+      C.setStatus(404);
+      C.setMessage(this.dataRequest.getMessage());
     }
     return C;
   }
 
   OpGetGaussJordan(A: Matrix): Matrix {
-    const obj2 = JSON.parse(this.getMatrixDataJSON(A));
-    const js = obj2;
+
     let C: Matrix;
-    C = new Matrix(1, `C`, []);
-    try {
-      this.dataRequest.getGaussJordan(js).subscribe(matrixRes =>
-        C.matrix = matrixRes.matrix
-      );
-    } catch (error) {
+
+    if (this.dataRequest.isOnline()) {
+      const obj2 = JSON.parse(this.getMatrixDataJSON(A));
+      const js = obj2;
+      C = new Matrix(1, `C`, []);
+      try {
+        this.dataRequest.getGaussJordan(js).subscribe(matrixRes =>
+          C.matrix = matrixRes.matrix
+        );
+        C.setMessage(`succesful operation`);
+        C.setStatus(200);
+      } catch (error) {
+        C = new Matrix(0, `undefined`, []);
+        C.setMessage(`error: ${error}`);
+        C.setStatus(404);
+      }
+    } else {
       C = new Matrix(0, `undefined`, []);
+      C.setMessage(this.dataRequest.getMessage());
+      C.setStatus(404);
     }
     return C;
   }

@@ -1,15 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { MatrixService } from '../matrix.service';
-import { faTrash, faCopy, faEdit, faSpinner, faTable, faBorderAll } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCopy, faEdit, faSpinner, faBorderAll } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Matrix } from '../matrix.model';
 
 
 @Component({
   selector: 'app-matrix',
   templateUrl: './matrix.component.html',
-  styleUrls: ['./matrix.component.css']
+  styleUrls: ['./matrix.component.css'],
+  providers: [NgbAlertConfig]
 })
 export class MatrixComponent implements OnInit {
   @Input() public name: string;
@@ -19,6 +20,10 @@ export class MatrixComponent implements OnInit {
   @Input() public show: boolean;
 
   n; m;
+
+  showMessage: boolean;
+  showMatrix: boolean;
+  public message: string;
 
   closeResult: string;
   matrixForm: FormGroup;
@@ -54,13 +59,35 @@ export class MatrixComponent implements OnInit {
   public bracket = 2;
 
 
-  constructor(private matrixService: MatrixService, private modalService: NgbModal) {
-    this.matrix = new Matrix(1, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
+  constructor(private matrixService: MatrixService, private modalService: NgbModal, alertConfig: NgbAlertConfig) {
+    this.matrix = new Matrix(200, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
     // this.matrix.data = [[1, 2, 0], [1, 1, 0], [1, 2, 3]];
     this.m = this.matrixService.getMatrixRows(this.matrix);
     this.n = this.matrixService.getMatrixCols(this.matrix);
+    this.message = `invalid matrix`;
+    this.setVisible(true);
     this.getColNumber();
     this.setPaddingConfig();
+
+    alertConfig.type = 'danger';
+  }
+
+
+  private setVisible(visible: boolean) {
+    if (this.show) {
+      if (visible && this.matrix.getStatus() == 200) {
+        this.showMessage = false;
+        this.showMatrix = true;
+      } else {
+        this.message = this.matrix.message;
+        this.showMessage = true;
+        this.showMatrix = false;
+      }
+
+    } else {
+      this.showMessage = false;
+      this.showMatrix = false;
+    }
   }
 
   getMatrix() {
@@ -68,7 +95,12 @@ export class MatrixComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setVisible(true);
+  }
 
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setVisible(true);
   }
 
   setSize(row, col) {

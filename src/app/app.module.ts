@@ -5,8 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MathJaxModule } from './math-jax/math-jax.module';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -25,6 +23,7 @@ import { GaussJordanComponent } from './solver/gauss-jordan/gauss-jordan.compone
 import { DeterminantsComponent } from './solver/determinants/determinants.component';
 import { SrcComponent } from './info/src/src.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MessageComponent } from './matrix/message/message.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     GaussComponent,
     GaussJordanComponent,
     DeterminantsComponent,
-    SrcComponent
+    SrcComponent,
+    MessageComponent
   ],
   entryComponents: [BiblioComponent],
   imports: [
@@ -53,7 +53,6 @@ import { HttpClientModule } from '@angular/common/http';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    MathJaxModule.forRoot(),
     HttpClientModule
   ],
   providers: [],

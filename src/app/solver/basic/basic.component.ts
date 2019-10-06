@@ -38,8 +38,8 @@ export class BasicComponent implements OnInit {
     this.showResult = false;
     this.scalarIsFocus = false;
 
-    this.matrixA = new Matrix(1, `A`, [[1.0, 2.0, 0.0, 1.0], [1.0, 1.0, 0.0, 1.0], [1.0, 2.0, 3.0, 1.0]]);
-    this.matrixB = new Matrix(2, `B`, [[1.0, 2.0, 3.0, 1.0], [1.0, 2.0, 0.0, 1.0], [1.0, 2.0, 0.0, 1.0]]);
+    this.matrixA = new Matrix(200, `A`, [[1.0, 2.0, 0.0, 1.0], [1.0, 1.0, 0.0, 1.0], [1.0, 2.0, 3.0, 1.0]]);
+    this.matrixB = new Matrix(200, `B`, [[1.0, 2.0, 3.0, 1.0], [1.0, 2.0, 0.0, 1.0], [1.0, 2.0, 0.0, 1.0]]);
   }
 
   isNumber(num) {
@@ -86,14 +86,18 @@ export class BasicComponent implements OnInit {
 
   callAdd() {
     this.matrixC = this.matrixService.OpAddMatrix(this.matrixA, this.matrixB);
+    this.showResult = this.matrixService.validMatrix(this.matrixC);
+
   }
 
   callSub() {
     this.matrixC = this.matrixService.OpSubMatrix(this.matrixA, this.matrixB);
+    this.showResult = this.matrixService.validMatrix(this.matrixC);
   }
 
   callMul() {
     this.matrixC = this.matrixService.OpMulMatrix(this.matrixB, this.scalar);
+    this.showResult = this.matrixService.validMatrix(this.matrixC);
   }
 
   ngOnInit() {

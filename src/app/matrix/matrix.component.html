@@ -1,4 +1,4 @@
-<div *ngIf="show">
+<div *ngIf="showMatrix">
   <div class="card border-0">
     <div class="row">
       <div class="col-{{bracket}}">
@@ -122,7 +122,7 @@
   </div>
   <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
+      <h4 class="modal-title bigTitle" id="modal-basic-title">Matrix {{name}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -199,7 +199,7 @@
   <ng-template #size let-modalSize>
     <form>
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Matrix {{name}}</h4>
+        <h4 class="modal-title bigTitle" id="modal-basic-title">Matrix {{name}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modalSize.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -232,3 +232,6 @@
   </ng-template>
 
 </div>
+<ng-container *ngIf="showMessage;">
+  <app-message [message]=message></app-message>
+</ng-container>
