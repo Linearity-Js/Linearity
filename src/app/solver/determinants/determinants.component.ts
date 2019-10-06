@@ -27,8 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 export class DeterminantsComponent implements OnInit {
 
   constructor(private modalService: NgbModal) { }
-  expression1 = `det(A) = \\sum_{i=1}^{n} a_{i,1} A_{i,1}`;
-  expression2 = `A_{i,j} = (-1)^{i + j}det(M)`;
+  expression1 = `$$det(A) = \\sum_{i=1}^{n} a_{i,1} A_{i,1}$$`;
+  expression2 = `$$A_{i,j} = (-1)^{i + j}det(M)$$`;
 
   // @ViewChild('mdSrc', { read: MathJaxDirective, static: true })
   // mdSrcMathJax: MathJaxDirective;
