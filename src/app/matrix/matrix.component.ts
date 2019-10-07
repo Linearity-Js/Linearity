@@ -60,7 +60,7 @@ export class MatrixComponent implements OnInit {
 
 
   constructor(private matrixService: MatrixService, private modalService: NgbModal, alertConfig: NgbAlertConfig) {
-    this.matrix = new Matrix(200, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
+    this.matrix = new Matrix(0, `A`, [[1, 2, 0], [1, 1, 0], [1, 2, 3]]);
     // this.matrix.data = [[1, 2, 0], [1, 1, 0], [1, 2, 3]];
     this.m = this.matrixService.getMatrixRows(this.matrix);
     this.n = this.matrixService.getMatrixCols(this.matrix);

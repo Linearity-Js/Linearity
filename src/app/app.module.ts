@@ -24,6 +24,7 @@ import { DeterminantsComponent } from './solver/determinants/determinants.compon
 import { SrcComponent } from './info/src/src.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './matrix/message/message.component';
+import { MathjaxComponent } from './mathjax/mathjax.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MessageComponent } from './matrix/message/message.component';
     GaussJordanComponent,
     DeterminantsComponent,
     SrcComponent,
-    MessageComponent
+    MessageComponent,
+    MathjaxComponent
   ],
   entryComponents: [BiblioComponent],
   imports: [
