@@ -1,4 +1,11 @@
-![Linearity](/home/rodrigo_rubio/Documentos/Programming/lnt/lnt/LOGO.png)
+![Linearity](/LOGO.png)
+
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/RubioHaro/)
+[![made-with-mathjax](https://img.shields.io/badge/Made%20with-MathJax-1f425f.svg)](https://www.mathjax.org/)
+[![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://github.com/RubioHaro/Linearity/blob/master/LICENSE)
+![PyPI status](https://img.shields.io/pypi/status/ansicolortags.svg)
+
+
 
 # Linearity
 
