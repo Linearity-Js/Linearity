@@ -4,6 +4,7 @@ import { faTrash, faCopy, faEdit, faSpinner, faBorderAll } from '@fortawesome/fr
 import { FormGroup } from '@angular/forms';
 import { NgbModal, ModalDismissReasons, NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Matrix } from '../matrix.model';
+import { options_edit, options_clean, options_copy, matrix_identity, matrix_transposed, identity_title, options_clean_title, options_copy_title, options_edit_title, matrix_title, options_transform, options_size, options_save } from 'src/lgs/lg';
 
 
 @Component({
@@ -29,19 +30,23 @@ export class MatrixComponent implements OnInit {
   matrixForm: FormGroup;
   demoForm: FormGroup;
 
-  copyText = 'Copy';
-  trashText = 'Clean';
-  editText = 'Edit';
-  identityText = 'Identity matrix';
-  transText = 'Transposed matrix';
-  transformationsText = 'Transform';
-  sizeText = 'Size';
+  MatrixTitle = matrix_title;
 
-  titleClear = 'Clean all matrix';
-  titleCopy = 'Copy the matrix';
-  titleEdit = 'Edit matrix';
-  titleIndentity = 'Identity';
-  titleTransformations = 'Transform';
+  copyText = options_copy;
+  trashText = options_clean;
+  editText = options_edit;
+
+  
+  identityText = matrix_identity;
+  transText = matrix_transposed;
+  sizeText = options_size;
+
+  saveText = options_save;
+  titleClear = options_clean_title;
+  titleCopy = options_copy_title;
+  titleEdit = options_edit_title;
+  titleIndentity = identity_title;
+  titleTransformations = options_transform;
 
   iconTrash = faTrash;
   iconCopy = faCopy;

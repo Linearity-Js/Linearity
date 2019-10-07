@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { Matrix } from 'src/app/matrix.model';
 import { MatrixService } from 'src/app/matrix.service';
-import { advanced_op_title } from 'src/lgs/lg';
+import { advanced_op_title, determinant_title, basic_op_title } from 'src/lgs/lg';
 
 @Component({
   selector: 'app-advanced',
@@ -19,7 +19,8 @@ export class AdvancedComponent implements OnInit {
   operationText;
 
   iconBasic = faCalculator;
-  advancedText = advanced_op_title;
+  advancedText = basic_op_title;
+  determinantText = determinant_title;
 
   closeResult() {
     this.showResult = false;
