@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faPlus, faMinus, faStarOfLife, faLaptop } from '@fortawesome/free-solid-svg-icons';
 import { MatrixService } from 'src/app/matrix.service';
 import { Matrix } from 'src/app/matrix.model';
+import { advanced_op_title, basic_op_title } from 'src/lgs/lg';
 
 @Component({
   selector: 'app-basic',
@@ -26,7 +27,7 @@ export class BasicComponent implements OnInit {
   minus = faMinus;
   dot = faStarOfLife;
 
-  advancedText = 'advenced operations';
+  basicText = basic_op_title;
   iconAdvanced = faLaptop;
 
   scalar: number;

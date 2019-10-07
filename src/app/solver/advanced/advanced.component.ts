@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { Matrix } from 'src/app/matrix.model';
 import { MatrixService } from 'src/app/matrix.service';
+import { advanced_op_title } from 'src/lgs/lg';
 
 @Component({
   selector: 'app-advanced',
@@ -18,7 +19,11 @@ export class AdvancedComponent implements OnInit {
   operationText;
 
   iconBasic = faCalculator;
-  basicText = 'basic operations';
+  advancedText = advanced_op_title;
+
+  closeResult() {
+    this.showResult = false;
+  }
 
   ngClickGauss() {
     this.operator = 'gss';

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Matrix } from './matrix.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataRequestService {
+  private online = false;
   private protocol = 'http';
   private host = 'localhost';
   private port = '8080';
@@ -26,6 +27,7 @@ export class DataRequestService {
   }
 
   public isOnline(): boolean {
+    this.ping();
     const response = this.testService();
     if (response) {
       this.message = this.onlineMessage;
@@ -40,21 +42,31 @@ export class DataRequestService {
   }
 
   private testService(): boolean {
-    let c;
-    try {
-      this.ping();
-      c = true;
-    } catch (error) {
-      c = false;
-    }
-    return c;
+    this.ping();
+    return (this.online);
   }
 
-  public ping(): Observable<Matrix> {
+  public ping(): void {
     const testUrl = `${this.generalURL}`;
-    return this.http.get<Matrix>(testUrl);
+
+    this.http.get(testUrl, { observe: 'response' }).subscribe(response => {
+      this.setOnline();
+    }, (err: HttpErrorResponse) => {
+      // console.error(`Backend returned code ${err.status}, body was: ${err.error}`);
+      this.setOffline();
+    }
+    );
   }
 
+  private setOnline(){
+    this.online = true;
+  }
+
+  private setOffline(){
+    this.online = false;
+  }
+
+  
   public getGauss(matrix: JSON): Observable<Matrix> {
     this.GaussURL = `${this.generalURL}/getGauss`;
     return this.http.post<Matrix>(this.GaussURL, matrix);
