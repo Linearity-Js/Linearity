@@ -59,13 +59,13 @@
     <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="">
       <div class="btn-group" role="group" aria-label="">
         <button (click)="ngOnClickPlus()" type="button" class="btn btn-dark">
-          <fa-icon [fixedWidth]="true" [icon]=plus></fa-icon> Addition
+          <fa-icon [fixedWidth]="true" [icon]=plus></fa-icon> {{AdditionText}}
         </button>
         <button (click)="ngOnClickMinus()" type="button" class="btn btn-dark">
-          <fa-icon [fixedWidth]="true" [icon]=minus></fa-icon> Subtraction
+          <fa-icon [fixedWidth]="true" [icon]=minus></fa-icon> {{SubtractionText}}
         </button>
         <button (click)="ngOnClickDot()" type="button" class="btn btn-dark">
-          <fa-icon [fixedWidth]="true" [icon]=dot></fa-icon> Multiplication
+          <fa-icon [fixedWidth]="true" [icon]=dot></fa-icon> {{MultiplicationText}}
         </button>
         <button routerLink="/solver/advanced" routerLinkActive="active" class="btn btn-dark">
           <fa-icon [fixedWidth]="true" [icon]=iconAdvanced></fa-icon>

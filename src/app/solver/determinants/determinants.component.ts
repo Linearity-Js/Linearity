@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { determinant_title } from 'src/lgs/lg';
 
 @Component({
   selector: 'app-determinants',
@@ -25,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 })
 
 export class DeterminantsComponent implements OnInit {
+
+  title = determinant_title;
 
   constructor(private modalService: NgbModal) { }
   expression1 = `$$det(A) = \\sum_{i=1}^{n} a_{i,1} A_{i,1}$$`;

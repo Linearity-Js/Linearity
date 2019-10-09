@@ -116,7 +116,7 @@
   </div>
   <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title bigTitle" id="modal-basic-title">Matrix {{name}}</h4>
+      <h4 class="modal-title bigTitle" id="modal-basic-title">{{MatrixTitle}} {{name}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -180,7 +180,7 @@
           </div>
         </div>
         <button type="button" class="btn btn-outline-dark m-1" ngbAutofocus
-          (click)="modal.close('Save click')">Save</button>
+          (click)="modal.close('Save click')">{{saveText}}</button>
       </div>
     </div>
   </ng-template>
@@ -214,7 +214,7 @@
       </div>
       <div class="modal-footer">
         <div class="form-group pt-2 text-center">
-          <button type="submit" (click)="modalSize.close()" class="btn btn-dark m-1" ngbAutofocus>Save</button>
+          <button type="submit" (click)="modalSize.close()" class="btn btn-dark m-1" ngbAutofocus>{{saveText}}</button>
         </div>
       </div>
     </form>
