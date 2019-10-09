@@ -3,6 +3,7 @@ import { faPlus, faMinus, faStarOfLife, faLaptop } from '@fortawesome/free-solid
 import { MatrixService } from 'src/app/matrix.service';
 import { Matrix } from 'src/app/matrix.model';
 import { advanced_op_title, basic_op_title, addition_title, subtraction_title, scalar_title, mult_title } from 'src/lgs/lg';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-basic',
@@ -36,9 +37,11 @@ export class BasicComponent implements OnInit {
   scalar: number;
   scalarIsFocus: boolean;
 
-  constructor(private matrixService: MatrixService) {
-    this.operationSymbol = `+`;
+
+  constructor(private matrixService: MatrixService, private _Activatedroute: ActivatedRoute) {
     this.operator = 'add';
+    this.operator = this._Activatedroute.snapshot.paramMap.get("id");
+    this.setSymbol();
     this.showResult = false;
     this.scalarIsFocus = false;
 
@@ -56,18 +59,36 @@ export class BasicComponent implements OnInit {
   }
 
   ngOnClickPlus() {
-    this.operationSymbol = `+`;
     this.operator = 'add';
+    this.setSymbol();
   }
 
   ngOnClickDot() {
-    this.operationSymbol = `*`;
     this.operator = 'mul';
+    this.setSymbol();
   }
 
   ngOnClickMinus() {
-    this.operationSymbol = `-`;
     this.operator = 'sub';
+    this.setSymbol();
+  }
+
+  private setSymbol() {
+    switch (this.operator) {
+      case 'add':
+        this.operationSymbol = `+`;
+        break;
+      case 'sub':
+        this.operationSymbol = `-`;
+        break;
+      case 'mul':
+        this.operationSymbol = `*`;
+        break;
+      default:
+        this.operator = 'add';
+        this.operationSymbol = `+`;
+        break;
+    }
   }
 
   submit() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faLaptop, faCalculator, faInfinity } from '@fortawesome/free-solid-svg-icons';
-import { addition_title, addition_description, subtraction_title, subtraction_description, scalar_title, scalar_description, gauss_title, gauss_description, gauss_jordan_title, gauss_jordan_description, determinants_title, determinants_description, determinant_title } from 'src/lgs/lg';
+import { addition_title, addition_description, subtraction_title, subtraction_description, scalar_title, scalar_description, gauss_title, gauss_description, gauss_jordan_title, gauss_jordan_description, determinants_description, determinant_title } from 'src/lgs/lg';
 
 
 @Component({

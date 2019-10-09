@@ -3,6 +3,7 @@ import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { Matrix } from 'src/app/matrix.model';
 import { MatrixService } from 'src/app/matrix.service';
 import { advanced_op_title, determinant_title, basic_op_title } from 'src/lgs/lg';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-advanced',
@@ -14,8 +15,7 @@ export class AdvancedComponent implements OnInit {
   matrixC: Matrix; // Auxiliar
   showResult;
 
-  operationSymbol = `+`;
-  operator = 'add';
+  operator;
   operationText;
 
   iconBasic = faCalculator;
@@ -36,8 +36,14 @@ export class AdvancedComponent implements OnInit {
     this.operator = 'det';
   }
 
-  constructor(private matrixService: MatrixService) {
+  constructor(private matrixService: MatrixService, private _Activatedroute: ActivatedRoute) {
     this.operator = 'gss';
+
+    this.operator = this._Activatedroute.snapshot.paramMap.get("id");
+    if (this.operator != 'gss' && this.operator != 'gsj' && this.operator != 'det') {
+      this.operator = 'gss';
+    }
+
     this.showResult = false;
     this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0]]);
     // this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0], [0.0, 2.0, 2.0, 1.0]]);
@@ -54,7 +60,7 @@ export class AdvancedComponent implements OnInit {
   }
 
   callDeterminants() {
-
+    this.showResult = false;
   }
 
   submit() {
@@ -66,7 +72,6 @@ export class AdvancedComponent implements OnInit {
       case 'gsj':
         this.callGaussJordan();
         break;
-
       case 'det':
         this.callDeterminants();
         break;
@@ -74,6 +79,7 @@ export class AdvancedComponent implements OnInit {
         break;
     }
   }
+
 
   ngOnInit() {
   }
