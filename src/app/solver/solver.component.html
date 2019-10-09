@@ -8,19 +8,19 @@
         </h5>
         <div class="card-text">
           <div class="list-group">
-            <a routerLink="basic" class="list-group-item list-group-item-action">
+            <a [routerLink]="['advanced', 'gss']" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 bigTitle">{{gaussTitle}}</h5>
               </div>
               <p class="mb-1">{{gaussDescription}}</p>
             </a>
-            <a routerLink="basic" class="list-group-item list-group-item-action">
+            <a [routerLink]="['advanced', 'gsj']" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 bigTitle">{{gaussJordanTitle}}</h5>
               </div>
               <p class="mb-1">{{gaussJordanDescription}}</p>
             </a>
-            <a routerLink="basic" class="list-group-item list-group-item-action">
+            <a [routerLink]="['advanced', 'det']" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 bigTitle">{{detTitle}}</h5>
               </div>
@@ -30,7 +30,7 @@
             </a>
           </div>
         </div>
-        <button routerLink="basic" routerLinkActive="active" class="btn btn-dark m-1 mt-4 ">
+        <button routerLink="advanced/" routerLinkActive="active" class="btn btn-dark m-1 mt-4 ">
           <fa-icon [fixedWidth]="true" [icon]=iconBasic></fa-icon>
           {{advancedText}}
         </button>
@@ -45,19 +45,19 @@
         </h5>
         <div class="card-text">
           <div class="list-group">
-            <a routerLink="basic" class="list-group-item list-group-item-action">
+            <a [routerLink]="['basic', 'add']" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 bigTitle">{{addTitle}}</h5>
               </div>
               <p class="mb-1">{{addDescription}}</p>
             </a>
-            <a routerLink="basic" class="list-group-item list-group-item-action">
+            <a [routerLink]="['basic', 'sub']" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 bigTitle">{{subTitle}}</h5>
               </div>
               <p class="mb-1">{{subDescription}}</p>
             </a>
-            <a routerLink="basic" class="list-group-item list-group-item-action">
+            <a [routerLink]="['basic', 'mul']" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 bigTitle">{{scalarTitle}}</h5>
               </div>
