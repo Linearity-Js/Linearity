@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LearnComponent } from './learn/learn.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IntroductionComponent } from './learn/introduction/introduction.component';
+import { BasisComponent } from './learn/basis/basis.component';
 
 
 
@@ -11,6 +12,7 @@ import { IntroductionComponent } from './learn/introduction/introduction.compone
   declarations: [
     LearnComponent,
     IntroductionComponent,
+    BasisComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
