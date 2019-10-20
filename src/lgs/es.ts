@@ -2,6 +2,12 @@ export const es = {
     basic_solver: `Calculadora Basica`,
 
     matrix_title: `Matriz`,
+    //home
+    solver_title: `solver`,
+    learn_title: `aprender`,
+    history_title: `historia`,
+
+
     //matrix types
     matrix_identity: `Matriz identidad`,
     matrix_transposed: `Matriz transpuesta`,

@@ -1,3 +1,4 @@
+import { LearnModule } from './learn/learn.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -55,7 +56,8 @@ import { MathjaxComponent } from './mathjax/mathjax.component';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LearnModule
   ],
   providers: [],
   bootstrap: [AppComponent]

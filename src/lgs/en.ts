@@ -2,6 +2,11 @@ export const en = {
     basic_solver: `Basic Solver`,
 
     matrix_title: `Matrix`,
+    //home
+    solver_title: `solver`,
+    learn_title: `learn`,
+    history_title: `history`,
+
     //matrix types
     matrix_identity: `Identity Matrix`,
     matrix_transposed: `Transposed matrix`,
