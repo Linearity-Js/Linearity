@@ -6,6 +6,8 @@ import { InfoComponent } from './info/info.component';
 import { AdvancedComponent } from './solver/advanced/advanced.component';
 import { BasicComponent } from './solver/basic/basic.component';
 import { SrcComponent } from './info/src/src.component';
+import { LearnComponent } from './learn/learn/learn.component';
+import { IntroductionComponent } from './learn/learn/introduction/introduction.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'solver/advanced', component: AdvancedComponent },
   { path: 'solver/basic/:id', component: BasicComponent },
   { path: 'solver/basic', component: BasicComponent },
+  { path: 'learn', component: LearnComponent },
+  { path: 'learn/2/introduction', component: IntroductionComponent },
   { path: 'info', component: InfoComponent },
   { path: 'info/src', component: SrcComponent },
 ];
