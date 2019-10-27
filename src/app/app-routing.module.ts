@@ -8,6 +8,7 @@ import { BasicComponent } from './solver/basic/basic.component';
 import { SrcComponent } from './info/src/src.component';
 import { LearnComponent } from './learn/learn/learn.component';
 import { IntroductionComponent } from './learn/learn/introduction/introduction.component';
+import { SubSpacesComponent } from './learn/learn/sub-spaces/sub-spaces.component';
 import { LinearCombinationsComponent } from './learn/learn/linear-combinations/linear-combinations.component';
 import { BasisComponent } from './learn/learn/basis/basis.component';
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'solver/basic', component: BasicComponent },
   { path: 'learn', component: LearnComponent },
   { path: 'learn/2/introduction', component: IntroductionComponent },
+  { path: 'learn/2/sub-spaces', component: SubSpacesComponent },
   { path: 'learn/2/linear-combinations', component: LinearCombinationsComponent },
   { path: 'learn/2/basis', component: BasisComponent },
   { path: 'info', component: InfoComponent },
