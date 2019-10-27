@@ -1,3 +1,4 @@
+import { SharedModuleModule } from './../shared-module/shared-module.module';
 import { AppRoutingModule } from './../app-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +15,7 @@ import { BasisComponent } from './learn/basis/basis.component';
     IntroductionComponent,
     BasisComponent],
   imports: [
+    SharedModuleModule,
     CommonModule,
     FontAwesomeModule,
     AppRoutingModule

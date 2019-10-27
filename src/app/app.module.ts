@@ -25,7 +25,7 @@ import { DeterminantsComponent } from './solver/determinants/determinants.compon
 import { SrcComponent } from './info/src/src.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './matrix/message/message.component';
-import { MathjaxComponent } from './mathjax/mathjax.component';
+import { SharedModuleModule } from './shared-module/shared-module.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,6 @@ import { MathjaxComponent } from './mathjax/mathjax.component';
     DeterminantsComponent,
     SrcComponent,
     MessageComponent,
-    MathjaxComponent
   ],
   entryComponents: [BiblioComponent],
   imports: [
@@ -57,7 +56,8 @@ import { MathjaxComponent } from './mathjax/mathjax.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LearnModule
+    LearnModule,
+    SharedModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
