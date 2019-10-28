@@ -10,6 +10,7 @@ export const en = {
     //matrix types
     matrix_identity: `Identity Matrix`,
     matrix_transposed: `Transposed matrix`,
+    matrix_inverse: `Inverse Matrix`,
     matrix_gauss: `Gauss Matrix`,
     matrix_gauss_jordan: `Gauss-Jordan Matrix`,
 
@@ -17,6 +18,14 @@ export const en = {
     gauss_title: `Gauss`,
     gauss_jordan_title: `Gauss-Jordan`,
     determinant_title: `Determinant`,
+
+    //equations
+    systems_equations_title: `Systems of linear equations`,
+
+    //vector spaces
+    vector_spaces_title: `Vector Spaces`,
+    vector_sub_spaces_title: `Vector Sub-Spaces`,
+
 
     //options
     options_save: `Save`,

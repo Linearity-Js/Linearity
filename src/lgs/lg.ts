@@ -3,7 +3,7 @@ import { es } from './es';
 
 
 let language;
-language = en;
+language = es;
 
 export const basic_solver = language.basic_solver;
 
@@ -11,6 +11,7 @@ export const matrix_title = language.matrix_title;
 //matrix types
 export const matrix_identity = language.matrix_identity;
 export const matrix_transposed = language.matrix_transposed;
+export const matrix_inverse = language.matrix_inverse;
 export const matrix_gauss = language.matrix_gauss;
 export const matrix_gauss_jordan = language.matrix_gauss_jordan;
 
@@ -18,6 +19,14 @@ export const identity_title = language.identity_title;
 export const gauss_title = language.gauss_title;
 export const gauss_jordan_title = language.gauss_jordan_title;
 export const determinant_title = language.determinant_title;
+
+//equations
+export const systems_equations_title = language.systems_equations_title;
+
+//spaces
+export const vector_spaces_title = language.vector_spaces_title;
+export const vector_sub_spaces_title = language.vector_sub_spaces_title;
+
 //options
 export const options_edit = language.options_edit;
 export const options_clean = language.options_clean;
