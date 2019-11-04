@@ -46,7 +46,7 @@ export class AdvancedComponent implements OnInit {
 
     this.showResult = false;
     this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0]]);
-    // this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0], [0.0, 2.0, 2.0, 1.0]]);
+    this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0], [0.0, 2.0, 2.0, 1.0]]);
   }
 
   callGauss() {
@@ -60,7 +60,8 @@ export class AdvancedComponent implements OnInit {
   }
 
   callDeterminants() {
-    this.showResult = false;
+    this.matrixC = this.matrixService.OpGetDeterminant(this.matrixA);
+    this.showResult = true;
   }
 
   submit() {

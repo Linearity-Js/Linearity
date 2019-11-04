@@ -242,4 +242,31 @@ export class MatrixService {
     }
     return dataText;
   }
+
+  OpGetDeterminant(A: Matrix): Matrix {
+
+    let C: Matrix;
+
+    if (this.dataRequest.isOnline()) {
+      const obj2 = JSON.parse(this.getMatrixDataJSON(A));
+      const js = obj2;
+      C = new Matrix(1, `C`, []);
+      try {
+        this.dataRequest.getDeterminant(js).subscribe(matrixRes =>
+          C.matrix = matrixRes.matrix
+        );
+        C.setMessage(`succesful operation`);
+        C.setStatus(200);
+      } catch (error) {
+        C = new Matrix(0, `undefined`, []);
+        C.setMessage(`error: ${error}`);
+        C.setStatus(404);
+      }
+    } else {
+      C = new Matrix(0, `undefined`, []);
+      C.setMessage(this.dataRequest.getMessage());
+      C.setStatus(404);
+    }
+    return C;
+  }
 }
