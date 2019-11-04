@@ -31,6 +31,7 @@ import { SrcComponent } from './info/src/src.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './matrix/message/message.component';
 import { MathjaxComponent } from './mathjax/mathjax.component';
+import { MatrixMultiplicationComponent } from './solver/basic/matrix-multiplication/matrix-multiplication.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MathjaxComponent } from './mathjax/mathjax.component';
     DeterminantsComponent,
     SrcComponent,
     MessageComponent,
-    MathjaxComponent
+    MathjaxComponent,
+    MatrixMultiplicationComponent
   ],
   entryComponents: [BiblioComponent],
   imports: [
