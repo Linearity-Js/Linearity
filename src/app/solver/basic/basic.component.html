@@ -7,8 +7,11 @@
     <p *ngSwitchCase="'sub'">
       <app-subtraction></app-subtraction>
     </p>
-    <p *ngSwitchCase="'mul'">
+    <p *ngSwitchCase="'esc'">
       <app-scalar-multiplication></app-scalar-multiplication>
+    </p>
+    <p *ngSwitchCase="'mat'">
+      multiplicacion de matrices!
     </p>
     <p *ngSwitchDefault>
       Not Found Info
@@ -18,14 +21,15 @@
 
 <div class="row text-center">
   <div class="col-md-5 d-flex justify-content-center align-items-center">
-    <ng-container *ngIf="operator === 'mul'; else elseMult">
+    <ng-container *ngIf="operator === 'esc'; else elseMult">
 
       <div class="form-group input-group-sm">
-        <input type="number" (focus)="scalarIsFocus = true;" (blur)="scalarIsFocus = false;" required class="form-control text-center" name="scalr" id="scalr" aria-describedby="escalar" [(ngModel)]="scalar"
+        <input type="number" (focus)="scalarIsFocus = true;" (blur)="scalarIsFocus = false;" required
+          class="form-control text-center" name="scalr" id="scalr" aria-describedby="escalar" [(ngModel)]="scalar"
           placeholder="c">
-          <ng-container *ngIf="scalarIsFocus">
-              <small id="escalar" class="form-text text-muted">just numbers</small>
-          </ng-container>
+        <ng-container *ngIf="scalarIsFocus">
+          <small id="escalar" class="form-text text-muted">just numbers</small>
+        </ng-container>
       </div>
 
     </ng-container>
@@ -57,19 +61,27 @@
 <div class="card border-0">
   <div class="card-body text-center">
     <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="">
-      <div class="btn-group" role="group" aria-label="">
+      <div class="btn-group" ngbDropdown role="group" aria-label="">
+        <button routerLink="/solver/advanced" routerLinkActive="active" class="btn btn-dark">
+          <fa-icon [fixedWidth]="true" [icon]=iconAdvanced></fa-icon>
+          {{basicText}}
+        </button>
         <button (click)="ngOnClickPlus()" type="button" class="btn btn-dark">
           <fa-icon [fixedWidth]="true" [icon]=plus></fa-icon> {{AdditionText}}
         </button>
         <button (click)="ngOnClickMinus()" type="button" class="btn btn-dark">
           <fa-icon [fixedWidth]="true" [icon]=minus></fa-icon> {{SubtractionText}}
         </button>
-        <button (click)="ngOnClickDot()" type="button" class="btn btn-dark">
-          <fa-icon [fixedWidth]="true" [icon]=dot></fa-icon> {{MultiplicationText}}
-        </button>
-        <button routerLink="/solver/advanced" routerLinkActive="active" class="btn btn-dark">
-          <fa-icon [fixedWidth]="true" [icon]=iconAdvanced></fa-icon>
-          {{basicText}}
+        <button class="btn btn-dark border-right-0" ngbDropdownToggle>
+          Multiplicación
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="ngOnClickDot('esc')" type="button" class="btn btn-dark">
+              <fa-icon [fixedWidth]="true" [icon]=dot></fa-icon> scalar
+            </button>
+            <button ngbDropdownItem (click)="ngOnClickDot('mat')" type="button" class="btn btn-dark">
+              <fa-icon [fixedWidth]="true" [icon]=dot></fa-icon> matrix
+            </button>
+          </div>
         </button>
       </div>
     </div>

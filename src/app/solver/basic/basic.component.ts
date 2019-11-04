@@ -63,8 +63,9 @@ export class BasicComponent implements OnInit {
     this.setSymbol();
   }
 
-  ngOnClickDot() {
-    this.operator = 'mul';
+  ngOnClickDot(operator) {
+    this.operator = operator;
+    console.info(operator)
     this.setSymbol();
   }
 
@@ -81,7 +82,10 @@ export class BasicComponent implements OnInit {
       case 'sub':
         this.operationSymbol = `-`;
         break;
-      case 'mul':
+      case 'esc':
+        this.operationSymbol = `*`;
+        break;
+      case 'mat':
         this.operationSymbol = `*`;
         break;
       default:
@@ -100,7 +104,7 @@ export class BasicComponent implements OnInit {
       case 'sub':
         this.callSub();
         break;
-      case 'mul':
+      case 'esc':
         this.callMul();
         break;
       default:
