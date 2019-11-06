@@ -12,15 +12,31 @@ export class Matrix {
         this.matrix = matrix;
     }
 
-    setMessage(message: string) {
+    public setMessage(message: string) {
         this.message = message;
     }
 
-    setStatus(status: number){
+    public setStatus(status: number) {
         this.status = status;
     }
 
-    getStatus(){
+    public getStatus() {
         return this.status;
+    }
+
+    public getMatrixRows(): number {
+        try {
+            return this.matrix.length;
+        } catch (error) {
+            return 0;
+        }
+    }
+
+    public getMatrixCols(): number {
+        try {
+            return this.matrix[0].length;
+        } catch (error) {
+            return 0;
+        }
     }
 }

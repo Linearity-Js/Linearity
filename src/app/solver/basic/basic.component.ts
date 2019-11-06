@@ -13,11 +13,13 @@ import { ActivatedRoute } from '@angular/router';
 
 export class BasicComponent implements OnInit {
 
-  matrixA: Matrix;
-  matrixB: Matrix;
-  matrixC: Matrix;
+  public matrixA: Matrix;
+  public matrixB: Matrix;
+  public matrixC: Matrix;
 
-  showResult;
+  public message: string;
+  public showResult: boolean;
+  public showMessage: boolean;
 
   operationSymbol = `+`;
   operator = 'add';
@@ -43,10 +45,16 @@ export class BasicComponent implements OnInit {
     this.operator = this._Activatedroute.snapshot.paramMap.get("id");
     this.setSymbol();
     this.showResult = false;
+    this.showMessage = false;
+    this.message = 'loading matrix...'
     this.scalarIsFocus = false;
 
     this.matrixA = new Matrix(200, `A`, [[1.0, 2.0, 0.0, 1.0], [1.0, 1.0, 0.0, 1.0], [1.0, 2.0, 3.0, 1.0]]);
     this.matrixB = new Matrix(200, `B`, [[1.0, 2.0, 3.0, 1.0], [1.0, 2.0, 0.0, 1.0], [1.0, 2.0, 0.0, 1.0]]);
+
+    this.matrixA = new Matrix(200, `A`, [[8, 3], [2, 4], [3, 6]]);
+    this.matrixB = new Matrix(200, `B`, [[1, 2, 3], [4, 6, 8]]);
+    this.matrixC = new Matrix(0, 'C', []);
   }
 
   isNumber(num) {
@@ -63,8 +71,9 @@ export class BasicComponent implements OnInit {
     this.setSymbol();
   }
 
-  ngOnClickDot() {
-    this.operator = 'mul';
+  ngOnClickDot(operator) {
+    this.operator = operator;
+    console.info(operator)
     this.setSymbol();
   }
 
@@ -81,7 +90,10 @@ export class BasicComponent implements OnInit {
       case 'sub':
         this.operationSymbol = `-`;
         break;
-      case 'mul':
+      case 'esc':
+        this.operationSymbol = `*`;
+        break;
+      case 'mat':
         this.operationSymbol = `*`;
         break;
       default:
@@ -92,6 +104,7 @@ export class BasicComponent implements OnInit {
   }
 
   submit() {
+    this.showMessage = false;
     this.showResult = true;
     switch (this.operator) {
       case 'add':
@@ -100,29 +113,54 @@ export class BasicComponent implements OnInit {
       case 'sub':
         this.callSub();
         break;
-      case 'mul':
+      case 'mat':
         this.callMul();
         break;
+      case 'esc':
+        this.callSca();
+        break;
       default:
-        console.log('No se ha selecciondo ningun operacion');
+        console.log('Without operator!');
         break;
     }
   }
 
-  callAdd() {
-    this.matrixC = this.matrixService.OpAddMatrix(this.matrixA, this.matrixB);
-    this.showResult = this.matrixService.validMatrix(this.matrixC);
+  private callAdd() {
+    if (this.matrixA.getMatrixCols() == this.matrixB.getMatrixCols() && this.matrixA.getMatrixRows() == this.matrixB.getMatrixRows()) {
+      this.matrixC = this.matrixService.OpAddMatrix(this.matrixA, this.matrixB);
+      this.showMessage = false;
+    } else {
+      const dim = `Dimensions: A rows = ${this.matrixA.getMatrixRows()}, cols = ${this.matrixA.getMatrixCols()}; B rows = ${this.matrixB.getMatrixRows()}, cols = ${this.matrixB.getMatrixCols()}`
+      this.message = `A matrix can only be added to (or subtracted from) another matrix if the two matrices have the same dimensions. ${dim}`
+      this.showMessage = true;
+    }
+  }
+
+
+  private callSub() {
+    if (this.matrixA.getMatrixCols() == this.matrixB.getMatrixCols() && this.matrixA.getMatrixRows() == this.matrixB.getMatrixRows()) {
+      this.matrixC = this.matrixService.OpSubMatrix(this.matrixA, this.matrixB);
+      this.showMessage = false;
+    } else {
+      const dim = `Dimensions: A rows = ${this.matrixA.getMatrixRows()}, cols = ${this.matrixA.getMatrixCols()}; B rows = ${this.matrixB.getMatrixRows()}, cols = ${this.matrixB.getMatrixCols()}`
+      this.message = `A matrix can only be added to (or subtracted from) another matrix if the two matrices have the same dimensions. ${dim}`
+      this.showMessage = true;
+    }
+  }
+
+  private callSca() {
+    if (!isNaN(this.scalar)) {
+      this.matrixC = this.matrixService.OpScaMatrix(this.matrixB, this.scalar);
+    } else {
+      this.scalar = 0;
+      this.matrixC = this.matrixService.OpScaMatrix(this.matrixB, 0);
+    }
 
   }
 
-  callSub() {
-    this.matrixC = this.matrixService.OpSubMatrix(this.matrixA, this.matrixB);
-    this.showResult = this.matrixService.validMatrix(this.matrixC);
-  }
-
-  callMul() {
-    this.matrixC = this.matrixService.OpMulMatrix(this.matrixB, this.scalar);
-    this.showResult = this.matrixService.validMatrix(this.matrixC);
+  private callMul() {
+    this.matrixC = this.matrixService.OpMulMatrix(this.matrixA, this.matrixB);
+    this.showResult = true;
   }
 
   ngOnInit() {

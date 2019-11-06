@@ -1,6 +1,7 @@
+import { mult_description } from './../../lgs/lg';
 import { Component, OnInit } from '@angular/core';
 import { faLaptop, faCalculator, faInfinity } from '@fortawesome/free-solid-svg-icons';
-import { addition_title, addition_description, subtraction_title, subtraction_description, scalar_title, scalar_description, gauss_title, gauss_description, gauss_jordan_title, gauss_jordan_description, determinants_description, determinant_title } from 'src/lgs/lg';
+import { addition_title, addition_description, subtraction_title, subtraction_description, scalar_title, scalar_description, gauss_title, gauss_description, gauss_jordan_title, gauss_jordan_description, determinants_description, determinant_title, mult_title } from 'src/lgs/lg';
 
 
 @Component({
@@ -26,6 +27,8 @@ export class SolverComponent implements OnInit {
   scalarTitle = scalar_title;
   scalarDescription = scalar_description;
 
+  mult_title = mult_title;
+  mult_description = mult_description;
 
   gaussTitle = gauss_title;
   gaussDescription = gauss_description;

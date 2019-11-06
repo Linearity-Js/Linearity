@@ -9,19 +9,26 @@ import { Matrix } from './matrix.model';
 export class DataRequestService {
   private online = false;
   private protocol = 'http';
-  private host = 'localhost';
-  private port = '8080';
-  private linearityBack = 'linearity-underground/resources/undergroundStation';
+  private dev_host = 'localhost';
+  private prd_host = `linearity-metro.herokuapp.com`;
+
+ 
+  private dev_port = '8080';
+  private linearityBack = '/Linearity-Underground/resources/undergroundStation';
+  
   private message;
-  private generalURL = `${this.protocol}://${this.host}:${this.port}/${this.linearityBack}`;
-  private GaussURL;
+  private dev_URL = `${this.protocol}://${this.dev_host}:${this.dev_port}${this.linearityBack}`;
+  private prd_URL = `${this.protocol}://${this.prd_host}${this.linearityBack}`;
+  private URL;
   private offlineMessage = `Can’t access. Problems with the server. Check ur connection`;
   private onlineMessage = `The back is online`;
+  private generalURL;
 
   data = { tipo: '' };
   v: any;
 
   constructor(private http: HttpClient) {
+    this.generalURL = this.dev_URL;
     this.isOnline();
     console.log(this.message);
   }
@@ -68,12 +75,17 @@ export class DataRequestService {
 
   
   public getGauss(matrix: JSON): Observable<Matrix> {
-    this.GaussURL = `${this.generalURL}/getGauss`;
-    return this.http.post<Matrix>(this.GaussURL, matrix);
+    this.URL = `${this.generalURL}/getGauss`;
+    return this.http.post<Matrix>(this.URL, matrix);
   }
 
   public getGaussJordan(matrix: JSON): Observable<Matrix> {
-    this.GaussURL = `${this.generalURL}/getGaussJordan`;
-    return this.http.post<Matrix>(this.GaussURL, matrix);
+    this.URL = `${this.generalURL}/getGaussJordan`;
+    return this.http.post<Matrix>(this.URL, matrix);
+  }
+
+  public getDeterminant(matrix: JSON): Observable<Matrix> {
+    this.URL = `${this.generalURL}/getDeterminant`;
+    return this.http.post<Matrix>(this.URL, matrix);
   }
 }

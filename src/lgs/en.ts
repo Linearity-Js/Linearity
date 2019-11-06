@@ -38,6 +38,7 @@ export const en = {
     subtraction_title: `Subtraction`,
     subtraction_description: `Subtraction of the m x n matrices operation`,
     mult_title: `Multiplication`,
+    mult_description: `Multiplication of the matrices`,
     scalar_title: `Scalar Multiplication`,
     scalar_description: `Scalar product of the scalar c with the matrix A`,
     //ops advanced

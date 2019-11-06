@@ -46,6 +46,8 @@ export const subtraction_description = language.subtraction_description;
 
 
 export const mult_title = language.mult_title;
+export const mult_description = language.mult_description;
+
 export const scalar_title = language.scalar_title;
 export const scalar_description = language.scalar_description;
 

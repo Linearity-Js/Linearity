@@ -11,9 +11,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./advanced.component.css']
 })
 export class AdvancedComponent implements OnInit {
-  matrixA: Matrix;
-  matrixC: Matrix; // Auxiliar
-  showResult;
+  public matrixA: Matrix;
+  public matrixC: Matrix; // Auxiliar
+  public message: string;
+  public showResult: boolean;
+  public showMessage: boolean;
 
   operator;
   operationText;
@@ -38,30 +40,45 @@ export class AdvancedComponent implements OnInit {
 
   constructor(private matrixService: MatrixService, private _Activatedroute: ActivatedRoute) {
     this.operator = 'gss';
-
+    this.message = 'loading matrix...'
     this.operator = this._Activatedroute.snapshot.paramMap.get("id");
     if (this.operator != 'gss' && this.operator != 'gsj' && this.operator != 'det') {
       this.operator = 'gss';
     }
 
     this.showResult = false;
+    this.showMessage = false;
     this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0]]);
-    // this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0], [0.0, 2.0, 2.0, 1.0]]);
+    this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0], [0.0, 2.0, 2.0, 1.0]]);
   }
 
   callGauss() {
     this.matrixC = this.matrixService.OpGetGauss(this.matrixA);
+    this.checkStatus();
     this.showResult = true;
   }
 
   callGaussJordan() {
     this.matrixC = this.matrixService.OpGetGaussJordan(this.matrixA);
+    this.checkStatus();
     this.showResult = true;
   }
 
+
   callDeterminants() {
-    this.showResult = false;
+    this.matrixC = this.matrixService.OpGetDeterminant(this.matrixA);
+    this.checkStatus();
+    this.showResult = true;
   }
+
+  private checkStatus() {
+    if (this.matrixC.getStatus() != 200) {
+      this.message = `Trying to connect...  \n We don't found response from the server. Check ur connection or try later. Estatus: ${this.matrixC.getStatus()}`
+      console.error(`${this.message}`);
+      this.showMessage = true;
+    }
+  }
+
 
   submit() {
     this.showResult = true;
