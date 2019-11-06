@@ -47,6 +47,10 @@ export class BasicComponent implements OnInit {
 
     this.matrixA = new Matrix(200, `A`, [[1.0, 2.0, 0.0, 1.0], [1.0, 1.0, 0.0, 1.0], [1.0, 2.0, 3.0, 1.0]]);
     this.matrixB = new Matrix(200, `B`, [[1.0, 2.0, 3.0, 1.0], [1.0, 2.0, 0.0, 1.0], [1.0, 2.0, 0.0, 1.0]]);
+
+    this.matrixA = new Matrix(200, `A`, [[8, 3], [2, 4], [3, 6]]);
+    this.matrixB = new Matrix(200, `B`, [[1, 2, 3], [4, 6, 8]]);
+    this.matrixC = new Matrix(0, 'C',[]);
   }
 
   isNumber(num) {
@@ -104,8 +108,11 @@ export class BasicComponent implements OnInit {
       case 'sub':
         this.callSub();
         break;
-      case 'esc':
+      case 'mat':
         this.callMul();
+        break;
+      case 'esc':
+        this.callSca();
         break;
       default:
         console.log('No se ha selecciondo ningun operacion');
@@ -115,18 +122,20 @@ export class BasicComponent implements OnInit {
 
   callAdd() {
     this.matrixC = this.matrixService.OpAddMatrix(this.matrixA, this.matrixB);
-    this.showResult = this.matrixService.validMatrix(this.matrixC);
 
   }
 
   callSub() {
     this.matrixC = this.matrixService.OpSubMatrix(this.matrixA, this.matrixB);
-    this.showResult = this.matrixService.validMatrix(this.matrixC);
+  }
+
+  callSca() {
+    this.matrixC = this.matrixService.OpScaMatrix(this.matrixB, this.scalar);
   }
 
   callMul() {
-    this.matrixC = this.matrixService.OpMulMatrix(this.matrixB, this.scalar);
-    this.showResult = this.matrixService.validMatrix(this.matrixC);
+    this.matrixC = this.matrixService.OpMulMatrix(this.matrixA, this.matrixB);
+    this.showResult = true;
   }
 
   ngOnInit() {

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Injectable } from '@angular/core';
 import { Matrix } from './matrix.model';
 import { DataRequestService } from './data-request.service';
@@ -146,7 +147,7 @@ export class MatrixService {
     return matrixC;
   }
 
-  OpMulMatrix(A: Matrix, scalar: number): Matrix {
+  OpScaMatrix(A: Matrix, scalar: number): Matrix {
     const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     for (let i = 0; i < A.matrix.length; i++) {
       matrixC.matrix[i] = new Array(A.matrix[i].length);
@@ -157,6 +158,41 @@ export class MatrixService {
     }
     return matrixC;
   }
+
+  OpMulMatrix(A: Matrix, B: Matrix): Matrix {
+    let matrixC = new Matrix(200, `C`, new Array(A.matrix.length));    
+
+    // const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
+    // for (let i = 0; i < A.matrix.length; i++) {
+    //   matrixC.matrix[i] = new Array(A.matrix[i].length);
+    //   for (let j = 0; j < A.matrix[i].length; j++) {
+    //     const element = Number(A.matrix[i][j]) * 1;
+    //     matrixC.matrix[i][j] = element;
+    //   }
+    // }
+    // return matrixC;
+    
+    matrixC.matrix = this.matrixDot(A.matrix, B.matrix);
+    console.error(`matriz generada`);
+    return matrixC;
+  }
+
+  private matrixDot(A, B): number[][] {
+    try {
+      var result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
+      
+      return result.map((row, i) => {
+        return row.map((val, j) => {
+          return A[i].reduce((sum, elm, k) => sum + (elm * B[k][j]), 0)
+        })
+      })
+      
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
 
   OpGetGauss(A: Matrix): Matrix {
     let C: Matrix;
