@@ -45,7 +45,7 @@ export class BasicComponent implements OnInit {
     this.operator = this._Activatedroute.snapshot.paramMap.get("id");
     this.setSymbol();
     this.showResult = false;
-    this.showMessage =  false;
+    this.showMessage = false;
     this.message = 'loading matrix...'
     this.scalarIsFocus = false;
 
@@ -104,6 +104,7 @@ export class BasicComponent implements OnInit {
   }
 
   submit() {
+    this.showMessage = false;
     this.showResult = true;
     switch (this.operator) {
       case 'add':
@@ -132,16 +133,29 @@ export class BasicComponent implements OnInit {
       const dim = `Dimensions: A rows = ${this.matrixA.getMatrixRows()}, cols = ${this.matrixA.getMatrixCols()}; B rows = ${this.matrixB.getMatrixRows()}, cols = ${this.matrixB.getMatrixCols()}`
       this.message = `A matrix can only be added to (or subtracted from) another matrix if the two matrices have the same dimensions. ${dim}`
       this.showMessage = true;
-      alert(this.message);
     }
   }
 
+
   private callSub() {
-    this.matrixC = this.matrixService.OpSubMatrix(this.matrixA, this.matrixB);
+    if (this.matrixA.getMatrixCols() == this.matrixB.getMatrixCols() && this.matrixA.getMatrixRows() == this.matrixB.getMatrixRows()) {
+      this.matrixC = this.matrixService.OpSubMatrix(this.matrixA, this.matrixB);
+      this.showMessage = false;
+    } else {
+      const dim = `Dimensions: A rows = ${this.matrixA.getMatrixRows()}, cols = ${this.matrixA.getMatrixCols()}; B rows = ${this.matrixB.getMatrixRows()}, cols = ${this.matrixB.getMatrixCols()}`
+      this.message = `A matrix can only be added to (or subtracted from) another matrix if the two matrices have the same dimensions. ${dim}`
+      this.showMessage = true;
+    }
   }
 
   private callSca() {
-    this.matrixC = this.matrixService.OpScaMatrix(this.matrixB, this.scalar);
+    if (!isNaN(this.scalar)) {
+      this.matrixC = this.matrixService.OpScaMatrix(this.matrixB, this.scalar);
+    } else {
+      this.scalar = 0;
+      this.matrixC = this.matrixService.OpScaMatrix(this.matrixB, 0);
+    }
+
   }
 
   private callMul() {

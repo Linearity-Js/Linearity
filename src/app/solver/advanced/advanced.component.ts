@@ -54,18 +54,31 @@ export class AdvancedComponent implements OnInit {
 
   callGauss() {
     this.matrixC = this.matrixService.OpGetGauss(this.matrixA);
+    this.checkStatus();
     this.showResult = true;
   }
 
   callGaussJordan() {
     this.matrixC = this.matrixService.OpGetGaussJordan(this.matrixA);
+    this.checkStatus();
     this.showResult = true;
   }
 
+
   callDeterminants() {
     this.matrixC = this.matrixService.OpGetDeterminant(this.matrixA);
+    this.checkStatus();
     this.showResult = true;
   }
+
+  private checkStatus() {
+    if (this.matrixC.getStatus() != 200) {
+      this.message = `Trying to connect...  \n We don't found response from the server. Check ur connection or try later. Estatus: ${this.matrixC.getStatus()}`
+      console.error(`${this.message}`);
+      this.showMessage = true;
+    }
+  }
+
 
   submit() {
     this.showResult = true;

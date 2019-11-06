@@ -81,12 +81,6 @@ export class MatrixComponent implements OnInit {
 
 
   private setVisible() {
-    console.log('____________-________________')
-    console.log(`Matrix: ${this.name}`)
-    console.log(`ext message: ` + this._message);
-    console.log(`message: ` + this.message);
-    console.log(`show message?` + this.show_message);
-    console.log('____________-________________')
     if (this.show) {
       if (this.matrix.getStatus() != 200 || this.show_message) {
         this.message = `error`;
@@ -114,12 +108,6 @@ export class MatrixComponent implements OnInit {
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnChanges(changes: SimpleChanges): void {
     this.setVisible();
-    console.log('____________-________________')
-    console.log(`Matrix: ${this.name}`)
-    console.log(`ext message: ` + this._message);
-    console.log(`message: ` + this.message);
-    console.log(`show message?` + this.show_message);
-    console.log('____________-________________')
   }
 
   setSize(row, col) {
