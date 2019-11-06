@@ -1,3 +1,4 @@
+import { HistoryComponent } from './learn/history/history.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'learn/2/sub-spaces', component: SubSpacesComponent },
   { path: 'learn/2/linear-combinations', component: LinearCombinationsComponent },
   { path: 'learn/2/basis', component: BasisComponent },
+  { path: 'history', component: HistoryComponent },
   { path: 'info', component: InfoComponent },
   { path: 'info/src', component: SrcComponent },
 ];

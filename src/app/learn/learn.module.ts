@@ -8,6 +8,7 @@ import { IntroductionComponent } from './learn/introduction/introduction.compone
 import { SubSpacesComponent } from './learn/sub-spaces/sub-spaces.component';
 import { LinearCombinationsComponent } from './learn/linear-combinations/linear-combinations.component';
 import { BasisComponent } from './learn/basis/basis.component';
+import { HistoryComponent } from './history/history.component';
 
 
 
@@ -18,6 +19,7 @@ import { BasisComponent } from './learn/basis/basis.component';
     SubSpacesComponent,
     LinearCombinationsComponent,
     BasisComponent,
+    HistoryComponent,
   ],
   imports: [
     SharedModuleModule,
