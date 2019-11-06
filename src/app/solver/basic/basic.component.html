@@ -35,7 +35,7 @@
     </ng-container>
     <ng-template #elseMult>
 
-      <app-matrix [name]="'A'" [show]=true [edit]=true [matrix]=matrixA></app-matrix>
+      <app-matrix [_message]=message [show_message]=false [name]="'A'" [show]=true [edit]=true [matrix]=matrixA></app-matrix>
 
     </ng-template>
   </div>
@@ -45,7 +45,7 @@
     </h1>
   </div>
   <div class="col-md-5">
-    <app-matrix [name]="'B'" [show]=true [edit]=true [matrix]=matrixB></app-matrix>
+    <app-matrix [_message]=message [show_message]=false [name]="'B'" [show]=true [edit]=true [matrix]=matrixB></app-matrix>
   </div>
 
 </div>
@@ -53,7 +53,7 @@
 <div class="text-center">
   <div class="row justify-content-center">
     <div class="col-7">
-      <app-matrix [name]="'C'" [show]=showResult [edit]=false [matrix]=matrixC></app-matrix>
+      <app-matrix [_message]=message [show_message]=showMessage [name]="'C'" [show]=showResult [edit]=false [matrix]=matrixC></app-matrix>
     </div>
   </div>
 </div>

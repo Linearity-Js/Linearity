@@ -19,6 +19,8 @@ export class MatrixComponent implements OnInit {
   @Input() public edit: boolean;
   @Input() public hide: boolean;
   @Input() public show: boolean;
+  @Input() public show_message: boolean;
+  @Input() public _message: string;
 
   n; m;
 
@@ -36,7 +38,7 @@ export class MatrixComponent implements OnInit {
   trashText = options_clean;
   editText = options_edit;
 
-  
+
   identityText = matrix_identity;
   transText = matrix_transposed;
   sizeText = options_size;
@@ -69,8 +71,8 @@ export class MatrixComponent implements OnInit {
     // this.matrix.data = [[1, 2, 0], [1, 1, 0], [1, 2, 3]];
     this.m = this.matrixService.getMatrixRows(this.matrix);
     this.n = this.matrixService.getMatrixCols(this.matrix);
-    this.message = `invalid matrix`;
-    this.setVisible(true);
+    this.showMessage = this.show_message;
+    this.setVisible();
     this.getColNumber();
     this.setPaddingConfig();
 
@@ -78,17 +80,23 @@ export class MatrixComponent implements OnInit {
   }
 
 
-  private setVisible(visible: boolean) {
+  private setVisible() {
+    console.log('____________-________________')
+    console.log(`Matrix: ${this.name}`)
+    console.log(`ext message: ` + this._message);
+    console.log(`message: ` + this.message);
+    console.log(`show message?` + this.show_message);
+    console.log('____________-________________')
     if (this.show) {
-      if (visible && this.matrix.getStatus() == 200) {
-        this.showMessage = false;
-        this.showMatrix = true;
-      } else {
-        this.message = this.matrix.message;
+      if (this.matrix.getStatus() != 200 || this.show_message) {
+        this.message = `error`;
+        this.message = this._message;
         this.showMessage = true;
         this.showMatrix = false;
+      } else {
+        this.showMessage = false;
+        this.showMatrix = true;
       }
-
     } else {
       this.showMessage = false;
       this.showMatrix = false;
@@ -100,12 +108,18 @@ export class MatrixComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setVisible(true);
+    this.setVisible();
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnChanges(changes: SimpleChanges): void {
-    this.setVisible(true);
+    this.setVisible();
+    console.log('____________-________________')
+    console.log(`Matrix: ${this.name}`)
+    console.log(`ext message: ` + this._message);
+    console.log(`message: ` + this.message);
+    console.log(`show message?` + this.show_message);
+    console.log('____________-________________')
   }
 
   setSize(row, col) {

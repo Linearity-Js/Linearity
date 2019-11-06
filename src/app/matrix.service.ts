@@ -173,7 +173,6 @@ export class MatrixService {
     // return matrixC;
     
     matrixC.matrix = this.matrixDot(A.matrix, B.matrix);
-    console.error(`matriz generada`);
     return matrixC;
   }
 
