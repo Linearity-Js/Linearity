@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { SimpleChanges } from '@angular/core';
-import { ConfigService } from '../config.service'
+import { ConfigService } from '../../config.service'
 
 @Component({
   selector: 'mathjax',
   templateUrl: './mathjax.component.html',
   styleUrls: ['./mathjax.component.css']
 })
+
 export class MathjaxComponent implements OnChanges, OnInit {
   @Input() content: string;
 

@@ -1,3 +1,4 @@
+import { LearnModule } from './learn/learn.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -30,8 +31,8 @@ import { ScalarMultiplicationComponent } from './solver/basic/scalar-multiplicat
 import { SrcComponent } from './info/src/src.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './matrix/message/message.component';
-import { MathjaxComponent } from './mathjax/mathjax.component';
 import { MatrixMultiplicationComponent } from './solver/basic/matrix-multiplication/matrix-multiplication.component';
+import { SharedModuleModule } from './shared-module/shared-module.module';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,6 @@ import { MatrixMultiplicationComponent } from './solver/basic/matrix-multiplicat
     DeterminantsComponent,
     SrcComponent,
     MessageComponent,
-    MathjaxComponent,
     MatrixMultiplicationComponent
   ],
   entryComponents: [BiblioComponent],
@@ -63,7 +63,9 @@ import { MatrixMultiplicationComponent } from './solver/basic/matrix-multiplicat
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LearnModule,
+    SharedModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

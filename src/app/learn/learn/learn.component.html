@@ -1,0 +1,152 @@
+<div class="content text-center">
+  <h2 class="bigTitle">
+    <fa-icon [icon]="faInfinity"></fa-icon>
+    Linearity
+  </h2>
+  <p>Learn the beauty of linear algebra</p>
+  <div class="form-group col-12 p-0">
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="row">
+        <div class="col-md-6 card border-0">
+          <div class="card-body">
+            <div class="card-title bigTitle">
+              1. {{systems_equations_title}} (soon)
+            </div>
+            <div class="card-text">
+              <div class="list-group">
+                <a routerLink="./2/introduction" class="card-text disabled list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1"> {{IntroductionText}} </div>
+                  </div>
+                </a>
+                <a routerLink="./2/linear-combinations"
+                  class="card-text disabled list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1">{{matrix_title}}</div>
+                  </div>
+                </a>
+                <a routerLink="./2/basis" class="card-text disabled list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1">{{inverse_matrix}}</div>
+                  </div>
+                </a>
+                <a routerLink="./2/sub-spaces" class="card-text disabled list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1">{{determinants_title}}</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <button routerLink="advanced/" routerLinkActive="active" class="btn btn-dark m-1 mt-4 ">
+              <fa-icon [fixedWidth]="true" [icon]=learnIcon></fa-icon> learn
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6 card border-0">
+
+          <div class="card-body">
+            <div class="card-title bigTitle">
+              2. {{vectorSpacesText}}
+            </div>
+            <div class="">
+              <div class="list-group ">
+                <a routerLink="./2/introduction" class="card-text list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between ">
+                    <div class="mb-1"> {{IntroductionText}} </div>
+                  </div>
+                </a>
+                <a routerLink="./2/introduction" class="card-text list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between ">
+                    <div class="mb-1"> {{vectorSubSpacesText}} </div>
+                  </div>
+                </a>
+                <a routerLink="./2/linear-combinations" class="card-text list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1">{{LCText}}</div>
+                  </div>
+                </a>
+                <a routerLink="./2/basis" class="card-text list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1 ">{{BasisText}}</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <button routerLink="advanced/" routerLinkActive="active" class="btn btn-dark m-1 mt-4 ">
+              <fa-icon [fixedWidth]="true" [icon]=learnIcon></fa-icon> learn
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="row">
+        <div class="col-md-6 card border-0">
+
+          <div class="card-body">
+            <div class="card-title bigTitle">
+              3. {{TransformationsText}} (soon)
+            </div>
+            <div class="card-text">
+              <div class="list-group">
+                <a routerLink="./2/introduction" class="card-text disabled list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1"> {{IntroductionText}} </div>
+                  </div>
+
+                </a>
+                <a routerLink="./2/sub-spaces" class="card-text disabled list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1">{{ImageAndKernelText}}</div>
+                  </div>
+
+                </a>
+                <a routerLink="./2/linear-combinations"
+                  class="card-text disabled list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1">{{IsomorphismText}}</div>
+                  </div>
+                </a>
+                <a routerLink="./2/basis" class="card-text disabled list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1">{{BasisChange}}</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <button routerLink="advanced/" routerLinkActive="active" class="btn btn-dark m-1 mt-4 ">
+              <fa-icon [fixedWidth]="true" [icon]=learnIcon></fa-icon> learn
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6 card border-0">
+
+          <div class="card-body">
+            <div class="card-title bigTitle">
+              4. {{ApplyText}} (soon)
+            </div>
+            <div class="card-text">
+              <div class="list-group">
+                <a routerLink="./2/introduction" class="disabled card-text list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="mb-1"> {{Diagonalitation}} </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <button routerLink="advanced/" routerLinkActive="active" class="btn btn-dark m-1 mt-4 ">
+              <fa-icon [fixedWidth]="true" [icon]=learnIcon></fa-icon> learn
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>
