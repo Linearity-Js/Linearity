@@ -58,10 +58,16 @@ export class AdvancedComponent implements OnInit {
     this.showResult = true;
   }
 
-  callGaussJordan() {
-    this.matrixC = this.matrixService.OpGetGaussJordan(this.matrixA);
-    this.checkStatus();
-    this.showResult = true;
+  private callGaussJordan() {
+    if (this.matrixA.getMatrixCols() !== this.matrixA.getMatrixRows()) {
+      this.matrixC = this.matrixService.OpGetGaussJordan(this.matrixA);
+      this.checkStatus();
+      this.showResult = true;
+    } else {
+      const dim = `Dimensions: A rows = ${this.matrixA.getMatrixRows()}, cols = ${this.matrixA.getMatrixCols()}`;
+      this.message = `Error: the last col is for the values (extended matrix). ${dim}`
+      this.showMessage = true;
+    }
   }
 
 
