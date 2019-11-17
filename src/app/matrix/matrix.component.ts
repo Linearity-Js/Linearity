@@ -176,7 +176,7 @@ export class MatrixComponent implements OnInit {
   }
 
   identity() {
-    this.matrixService.getIdentity(this.matrix);
+    this.matrixService.getIdentity(this.matrix.matrix);
   }
 
   trans() {
