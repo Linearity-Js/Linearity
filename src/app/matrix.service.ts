@@ -105,7 +105,7 @@ export class MatrixService {
     return matrix;
   }
 
-  getIdentity(matrix) {
+  public getIdentity(matrix) {
     // matrix = this.cleanMatrix(matrix);
     const l = matrix.length;
     let position = 0;
@@ -123,7 +123,7 @@ export class MatrixService {
     return matrix;
   }
 
-  OpAddMatrix(A: Matrix, B: Matrix): Matrix {
+  public OpAddMatrix(A: Matrix, B: Matrix): Matrix {
     const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     for (let i = 0; i < A.matrix.length; i++) {
       matrixC.matrix[i] = new Array(A.matrix[i].length);
@@ -135,7 +135,7 @@ export class MatrixService {
     return matrixC;
   }
 
-  OpSubMatrix(A: Matrix, B: Matrix): Matrix {
+  public OpSubMatrix(A: Matrix, B: Matrix): Matrix {
     const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     for (let i = 0; i < A.matrix.length; i++) {
       matrixC.matrix[i] = new Array(A.matrix[i].length);
@@ -160,7 +160,7 @@ export class MatrixService {
   }
 
   OpMulMatrix(A: Matrix, B: Matrix): Matrix {
-    let matrixC = new Matrix(200, `C`, new Array(A.matrix.length));    
+    let matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
 
     // const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     // for (let i = 0; i < A.matrix.length; i++) {
@@ -171,7 +171,7 @@ export class MatrixService {
     //   }
     // }
     // return matrixC;
-    
+
     matrixC.matrix = this.matrixDot(A.matrix, B.matrix);
     return matrixC;
   }
@@ -179,13 +179,13 @@ export class MatrixService {
   private matrixDot(A, B): number[][] {
     try {
       var result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
-      
+
       return result.map((row, i) => {
         return row.map((val, j) => {
           return A[i].reduce((sum, elm, k) => sum + (elm * B[k][j]), 0)
         })
       })
-      
+
     } catch (error) {
       console.error(error);
       return null;
