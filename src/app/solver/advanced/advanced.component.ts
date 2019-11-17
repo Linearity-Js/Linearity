@@ -88,6 +88,7 @@ export class AdvancedComponent implements OnInit {
 
   submit() {
     this.showResult = true;
+    this.showMessage = false;
     switch (this.operator) {
       case 'gss':
         this.callGauss();
