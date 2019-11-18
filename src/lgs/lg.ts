@@ -3,7 +3,7 @@ import { es } from './es';
 
 
 let language;
-language = es;
+language = en;
 
 export const basic_solver = language.basic_solver;
 
