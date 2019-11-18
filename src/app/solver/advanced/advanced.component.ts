@@ -37,6 +37,9 @@ export class AdvancedComponent implements OnInit {
   ngClickDet() {
     this.operator = 'det';
   }
+  ngClickTrs() {
+    this.operator = 'trs';
+  }
 
   constructor(private matrixService: MatrixService, private _Activatedroute: ActivatedRoute) {
     this.operator = 'gss';
@@ -52,20 +55,35 @@ export class AdvancedComponent implements OnInit {
     this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0], [0.0, 2.0, 2.0, 1.0]]);
   }
 
-  callGauss() {
+  private callGauss() {
     this.matrixC = this.matrixService.OpGetGauss(this.matrixA);
     this.checkStatus();
     this.showResult = true;
   }
 
-  callGaussJordan() {
-    this.matrixC = this.matrixService.OpGetGaussJordan(this.matrixA);
+
+  private callGaussJordan() {
+    if (this.matrixA.getMatrixCols() !== this.matrixA.getMatrixRows()) {
+      this.matrixC = this.matrixService.OpGetGaussJordan(this.matrixA);
+      this.checkStatus();
+      this.showResult = true;
+    } else {
+      const dim = `Dimensions: A rows = ${this.matrixA.getMatrixRows()}, cols = ${this.matrixA.getMatrixCols()}`;
+      this.message = `Error: the last col is for the values (extended matrix). ${dim}`
+      this.showMessage = true;
+    }
+  }
+
+  private callTranspose() {
+    this.matrixC = this.matrixService.getTransposeMatrix(this.matrixA);
+    console.log(this.matrixC);
     this.checkStatus();
     this.showResult = true;
   }
 
 
-  callDeterminants() {
+
+  private callDeterminants() {
     this.matrixC = this.matrixService.OpGetDeterminant(this.matrixA);
     this.checkStatus();
     this.showResult = true;
@@ -82,6 +100,7 @@ export class AdvancedComponent implements OnInit {
 
   submit() {
     this.showResult = true;
+    this.showMessage = false;
     switch (this.operator) {
       case 'gss':
         this.callGauss();
@@ -91,6 +110,9 @@ export class AdvancedComponent implements OnInit {
         break;
       case 'det':
         this.callDeterminants();
+        break;
+      case 'trs':
+        this.callTranspose();
         break;
       default:
         break;

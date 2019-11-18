@@ -105,7 +105,7 @@ export class MatrixService {
     return matrix;
   }
 
-  getIdentity(matrix) {
+  public getIdentity(matrix) {
     // matrix = this.cleanMatrix(matrix);
     const l = matrix.length;
     let position = 0;
@@ -123,7 +123,7 @@ export class MatrixService {
     return matrix;
   }
 
-  OpAddMatrix(A: Matrix, B: Matrix): Matrix {
+  public OpAddMatrix(A: Matrix, B: Matrix): Matrix {
     const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     for (let i = 0; i < A.matrix.length; i++) {
       matrixC.matrix[i] = new Array(A.matrix[i].length);
@@ -135,7 +135,7 @@ export class MatrixService {
     return matrixC;
   }
 
-  OpSubMatrix(A: Matrix, B: Matrix): Matrix {
+  public OpSubMatrix(A: Matrix, B: Matrix): Matrix {
     const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     for (let i = 0; i < A.matrix.length; i++) {
       matrixC.matrix[i] = new Array(A.matrix[i].length);
@@ -160,7 +160,7 @@ export class MatrixService {
   }
 
   OpMulMatrix(A: Matrix, B: Matrix): Matrix {
-    let matrixC = new Matrix(200, `C`, new Array(A.matrix.length));    
+    let matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
 
     // const matrixC = new Matrix(200, `C`, new Array(A.matrix.length));
     // for (let i = 0; i < A.matrix.length; i++) {
@@ -171,7 +171,7 @@ export class MatrixService {
     //   }
     // }
     // return matrixC;
-    
+
     matrixC.matrix = this.matrixDot(A.matrix, B.matrix);
     return matrixC;
   }
@@ -179,19 +179,43 @@ export class MatrixService {
   private matrixDot(A, B): number[][] {
     try {
       var result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
-      
+
       return result.map((row, i) => {
         return row.map((val, j) => {
           return A[i].reduce((sum, elm, k) => sum + (elm * B[k][j]), 0)
         })
       })
-      
+
     } catch (error) {
       console.error(error);
       return null;
     }
   }
 
+  getTransposeMatrix(matrix: Matrix){
+    let C: Matrix;
+    if (this.dataRequest.isOnline()) {
+      const obj2 = JSON.parse(this.getMatrixDataJSON(matrix));
+      const js = obj2;
+      C = new Matrix(0, `C`, []);
+      try {
+        this.dataRequest.getTransposed(js).subscribe(matrixRes =>
+          C.matrix = matrixRes.matrix
+        );
+        C.setMessage(`succesful operation`);
+        C.setStatus(200);
+      } catch (error) {
+        C = new Matrix(0, `undefined`, []);
+        C.setMessage(`error: ${error}`);
+        C.setStatus(404);
+      }
+    } else {
+      C = new Matrix(0, `undefined`, []);
+      C.setStatus(404);
+      C.setMessage(this.dataRequest.getMessage());
+    }
+    return C;
+  }
 
   OpGetGauss(A: Matrix): Matrix {
     let C: Matrix;
@@ -223,19 +247,27 @@ export class MatrixService {
     let C: Matrix;
 
     if (this.dataRequest.isOnline()) {
-      const obj2 = JSON.parse(this.getMatrixDataJSON(A));
-      const js = obj2;
-      C = new Matrix(1, `C`, []);
-      try {
-        this.dataRequest.getGaussJordan(js).subscribe(matrixRes =>
-          C.matrix = matrixRes.matrix
-        );
-        C.setMessage(`succesful operation`);
-        C.setStatus(200);
-      } catch (error) {
+
+      if (A.getMatrixCols() !== A.getMatrixRows()) {
+        console.log(`cols:${A.getMatrixCols()} rows: ${A.getMatrixRows()}`);
+        const obj2 = JSON.parse(this.getMatrixDataJSON(A));
+        const js = obj2;
+        C = new Matrix(1, `C`, []);
+        try {
+          this.dataRequest.getGaussJordan(js).subscribe(matrixRes =>
+            C.matrix = matrixRes.matrix
+          );
+          C.setMessage(`succesful operation`);
+          C.setStatus(200);
+        } catch (error) {
+          C = new Matrix(0, `undefined`, []);
+          C.setMessage(`error: ${error}`);
+          C.setStatus(404);
+        }
+      } else {
         C = new Matrix(0, `undefined`, []);
-        C.setMessage(`error: ${error}`);
-        C.setStatus(404);
+        C.setMessage(`error: the last coloumn is for the values (extended matrix). `);
+        C.setStatus(500);
       }
     } else {
       C = new Matrix(0, `undefined`, []);

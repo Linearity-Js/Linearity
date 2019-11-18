@@ -10,6 +10,9 @@
     <p *ngSwitchCase="'det'">
       <app-determinants></app-determinants>
     </p>
+    <p *ngSwitchCase="'trs'">
+      <app-transpose></app-transpose>
+    </p>
     <p *ngSwitchDefault>
       Not Found Info
     </p>
@@ -48,6 +51,9 @@
         </button>
         <button (click)="ngClickDet()" type="button" class="btn btn-dark">
           {{determinantText}}
+        </button>
+        <button (click)="ngClickTrs()" type="button" class="btn btn-dark">
+          Transpuesta
         </button>
         <button routerLink="/solver/basic" routerLinkActive="active" class="btn btn-dark">
           <fa-icon [fixedWidth]="true" [icon]=iconBasic></fa-icon>

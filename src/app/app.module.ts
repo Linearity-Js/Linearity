@@ -33,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './matrix/message/message.component';
 import { MatrixMultiplicationComponent } from './solver/basic/matrix-multiplication/matrix-multiplication.component';
 import { SharedModuleModule } from './shared-module/shared-module.module';
+import { TransposeComponent } from './solver/advanced/transpose/transpose.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { SharedModuleModule } from './shared-module/shared-module.module';
     DeterminantsComponent,
     SrcComponent,
     MessageComponent,
-    MatrixMultiplicationComponent
+    MatrixMultiplicationComponent,
+    TransposeComponent,
   ],
   entryComponents: [BiblioComponent],
   imports: [
