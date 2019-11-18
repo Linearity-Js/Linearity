@@ -180,7 +180,9 @@ export class MatrixComponent implements OnInit {
   }
 
   trans() {
-
+    alert('hi, this option is disabled, please use the system correctly')
+    // this.matrix.matrix = this.matrixService.getTransposeMatrix(this.matrix).matrix;
+    // console.log(this.matrixService.getTransposeMatrix(this.matrix));
   }
 
   setPaddingConfig() {

@@ -73,6 +73,10 @@ export class DataRequestService {
     this.online = false;
   }
 
+  public getTransposed(matrix: JSON): Observable<Matrix> {
+    this.URL = `${this.generalURL}/getTransposeMatrix`;
+    return this.http.post<Matrix>(this.URL, matrix);
+  }
   
   public getGauss(matrix: JSON): Observable<Matrix> {
     this.URL = `${this.generalURL}/getGauss`;

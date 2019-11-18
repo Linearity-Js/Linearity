@@ -192,6 +192,30 @@ export class MatrixService {
     }
   }
 
+  getTransposeMatrix(matrix: Matrix){
+    let C: Matrix;
+    if (this.dataRequest.isOnline()) {
+      const obj2 = JSON.parse(this.getMatrixDataJSON(matrix));
+      const js = obj2;
+      C = new Matrix(0, `C`, []);
+      try {
+        this.dataRequest.getTransposed(js).subscribe(matrixRes =>
+          C.matrix = matrixRes.matrix
+        );
+        C.setMessage(`succesful operation`);
+        C.setStatus(200);
+      } catch (error) {
+        C = new Matrix(0, `undefined`, []);
+        C.setMessage(`error: ${error}`);
+        C.setStatus(404);
+      }
+    } else {
+      C = new Matrix(0, `undefined`, []);
+      C.setStatus(404);
+      C.setMessage(this.dataRequest.getMessage());
+    }
+    return C;
+  }
 
   OpGetGauss(A: Matrix): Matrix {
     let C: Matrix;

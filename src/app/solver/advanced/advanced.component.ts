@@ -37,6 +37,9 @@ export class AdvancedComponent implements OnInit {
   ngClickDet() {
     this.operator = 'det';
   }
+  ngClickTrs() {
+    this.operator = 'trs';
+  }
 
   constructor(private matrixService: MatrixService, private _Activatedroute: ActivatedRoute) {
     this.operator = 'gss';
@@ -52,11 +55,12 @@ export class AdvancedComponent implements OnInit {
     this.matrixA = new Matrix(200, `A`, [[1.0, 1.0, 1.0, 1.0], [2.0, 1.0, 1.0, 1.0], [2.0, 2.0, 1.0, 1.0], [0.0, 2.0, 2.0, 1.0]]);
   }
 
-  callGauss() {
+  private callGauss() {
     this.matrixC = this.matrixService.OpGetGauss(this.matrixA);
     this.checkStatus();
     this.showResult = true;
   }
+
 
   private callGaussJordan() {
     if (this.matrixA.getMatrixCols() !== this.matrixA.getMatrixRows()) {
@@ -70,8 +74,16 @@ export class AdvancedComponent implements OnInit {
     }
   }
 
+  private callTranspose() {
+    this.matrixC = this.matrixService.getTransposeMatrix(this.matrixA);
+    console.log(this.matrixC);
+    this.checkStatus();
+    this.showResult = true;
+  }
 
-  callDeterminants() {
+
+
+  private callDeterminants() {
     this.matrixC = this.matrixService.OpGetDeterminant(this.matrixA);
     this.checkStatus();
     this.showResult = true;
@@ -98,6 +110,9 @@ export class AdvancedComponent implements OnInit {
         break;
       case 'det':
         this.callDeterminants();
+        break;
+      case 'trs':
+        this.callTranspose();
         break;
       default:
         break;
