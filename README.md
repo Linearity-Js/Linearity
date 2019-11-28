@@ -19,6 +19,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+## Backend server
+
+Deploy war (the backend API) on JAVA server. API Code Link: [Lineraity Underground](https://github.com/RubioHaro/Linearity-Underground).
+
 ## Author
 
 By [Rubio Haro Rodrigo R.](https://github.com/RubioHaro/) 
