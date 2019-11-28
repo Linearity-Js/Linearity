@@ -40,6 +40,9 @@ export class AdvancedComponent implements OnInit {
   ngClickTrs() {
     this.operator = 'trs';
   }
+  ngClickInv() {
+    this.operator = 'inv';
+  }
 
   constructor(private matrixService: MatrixService, private _Activatedroute: ActivatedRoute) {
     this.operator = 'gss';
@@ -74,6 +77,19 @@ export class AdvancedComponent implements OnInit {
     }
   }
 
+  private callInverse() {
+    if (this.matrixA.getMatrixCols() === this.matrixA.getMatrixRows()) {
+      this.matrixC = this.matrixService.OpGetInverse(this.matrixA);
+      this.checkStatus();
+      this.showResult = true;
+    } else {
+      const dim = `Dimensions: A rows = ${this.matrixA.getMatrixRows()}, cols = ${this.matrixA.getMatrixCols()}`;
+      this.message = `Error: This service only works for nxn matrices. ${dim}`
+      this.showMessage = true;
+    }
+  }
+
+
   private callTranspose() {
     this.matrixC = this.matrixService.getTransposeMatrix(this.matrixA);
     console.log(this.matrixC);
@@ -107,6 +123,9 @@ export class AdvancedComponent implements OnInit {
         break;
       case 'gsj':
         this.callGaussJordan();
+        break;
+      case 'inv':
+        this.callInverse();
         break;
       case 'det':
         this.callDeterminants();

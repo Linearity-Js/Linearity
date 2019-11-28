@@ -34,6 +34,7 @@ import { MessageComponent } from './matrix/message/message.component';
 import { MatrixMultiplicationComponent } from './solver/basic/matrix-multiplication/matrix-multiplication.component';
 import { SharedModuleModule } from './shared-module/shared-module.module';
 import { TransposeComponent } from './solver/advanced/transpose/transpose.component';
+import { InverseComponent } from './solver/advanced/inverse/inverse.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { TransposeComponent } from './solver/advanced/transpose/transpose.compon
     MessageComponent,
     MatrixMultiplicationComponent,
     TransposeComponent,
+    InverseComponent,
   ],
   entryComponents: [BiblioComponent],
   imports: [

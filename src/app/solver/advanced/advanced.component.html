@@ -13,6 +13,9 @@
     <p *ngSwitchCase="'trs'">
       <app-transpose></app-transpose>
     </p>
+    <p *ngSwitchCase="'inv'">
+      <app-inverse></app-inverse>
+    </p>
     <p *ngSwitchDefault>
       Not Found Info
     </p>
@@ -21,7 +24,8 @@
 
 <div class="row">
   <div class="col-md-12">
-    <app-matrix [_message]=message [show_message]=false [name]="'A'" [show]=true [edit]=true [matrix]=matrixA></app-matrix>
+    <app-matrix [_message]=message [show_message]=false [name]="'A'" [show]=true [edit]=true [matrix]=matrixA>
+    </app-matrix>
   </div>
 </div>
 
@@ -29,7 +33,8 @@
   <div class="row justify-content-center">
     <div class="col-1"></div>
     <div class="col-7">
-      <app-matrix [_message]=message [show_message]=showMessage [name]="'C'" [show]=showResult [edit]=false [matrix]=matrixC></app-matrix>
+      <app-matrix [_message]=message [show_message]=showMessage [name]="'C'" [show]=showResult [edit]=false
+        [matrix]=matrixC></app-matrix>
     </div>
     <div class="col-1">
       <button type="button" class="close" aria-label="Close" (click)="closeResult()">
@@ -54,6 +59,9 @@
         </button>
         <button (click)="ngClickTrs()" type="button" class="btn btn-dark">
           Transpuesta
+        </button>
+        <button (click)="ngClickInv()" type="button" class="btn btn-dark">
+          inv
         </button>
         <button routerLink="/solver/basic" routerLinkActive="active" class="btn btn-dark">
           <fa-icon [fixedWidth]="true" [icon]=iconBasic></fa-icon>

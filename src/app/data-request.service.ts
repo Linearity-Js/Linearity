@@ -88,6 +88,11 @@ export class DataRequestService {
     return this.http.post<Matrix>(this.URL, matrix);
   }
 
+  public getInverse(matrix: JSON): Observable<Matrix> {
+    this.URL = `${this.generalURL}/getInverse`;
+    return this.http.post<Matrix>(this.URL, matrix);
+  }
+
   public getDeterminant(matrix: JSON): Observable<Matrix> {
     this.URL = `${this.generalURL}/getDeterminant`;
     return this.http.post<Matrix>(this.URL, matrix);
