@@ -9,6 +9,7 @@ import { SubSpacesComponent } from './learn/sub-spaces/sub-spaces.component';
 import { LinearCombinationsComponent } from './learn/linear-combinations/linear-combinations.component';
 import { BasisComponent } from './learn/basis/basis.component';
 import { HistoryComponent } from './history/history.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 
@@ -20,6 +21,7 @@ import { HistoryComponent } from './history/history.component';
     LinearCombinationsComponent,
     BasisComponent,
     HistoryComponent,
+    MenuComponent,
   ],
   imports: [
     SharedModuleModule,
