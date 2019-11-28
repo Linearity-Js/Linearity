@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faInfinity } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menu',
