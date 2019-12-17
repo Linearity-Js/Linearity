@@ -20,10 +20,13 @@
       <fa-icon [fixedWidth]="true" [icon]=historyIcon></fa-icon>
       {{historyText}}
     </button>
-
     <button routerLink="/info" routerLinkActive="active" class="btn btn-dark m-1 ">
       <fa-icon [fixedWidth]="true" [icon]=iconInfo></fa-icon>
       {{infoText}}
     </button>
+  </div>
+
+  <div>
+    <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">Only local proyect is working!</ngb-alert>
   </div>
 </div>
