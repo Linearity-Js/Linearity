@@ -14,16 +14,16 @@ import { determinant_title } from 'src/lgs/lg';
   styleUrls: ['./determinants.component.css']
 })
 
-@NgModule({
-  declarations: [DeterminantsComponent],
-  imports: [
-    CommonModule,
-    // MathJaxModule.forChild(),
-    DeterminantsComponent,
-    FormsModule,
-    HttpClientModule
-  ]
-})
+// @NgModule({
+//   declarations: [DeterminantsComponent],
+//   imports: [
+//     CommonModule,
+//     // MathJaxModule.forChild(),
+//     DeterminantsComponent,
+//     FormsModule,
+//     HttpClientModule
+//   ]
+// })
 
 export class DeterminantsComponent implements OnInit {
 
