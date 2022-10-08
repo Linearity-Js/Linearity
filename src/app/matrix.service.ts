@@ -249,7 +249,7 @@ export class MatrixService {
     if (this.dataRequest.isOnline()) {
 
       if (A.getMatrixCols() !== A.getMatrixRows()) {
-        console.log(`cols:${A.getMatrixCols()} rows: ${A.getMatrixRows()}`);
+        
         const obj2 = JSON.parse(this.getMatrixDataJSON(A));
         const js = obj2;
         C = new Matrix(1, `C`, []);
@@ -286,7 +286,7 @@ export class MatrixService {
     if (this.dataRequest.isOnline()) {
 
       if (A.getMatrixCols() === A.getMatrixRows()) {
-        console.log(`cols:${A.getMatrixCols()} rows: ${A.getMatrixRows()}`);
+        
         const obj2 = JSON.parse(this.getMatrixDataJSON(A));
         const js = obj2;
         C = new Matrix(1, `C`, []);

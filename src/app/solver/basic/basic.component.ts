@@ -73,7 +73,7 @@ export class BasicComponent implements OnInit {
 
   ngOnClickDot(operator) {
     this.operator = operator;
-    console.info(operator)
+    
     this.setSymbol();
   }
 
@@ -120,7 +120,7 @@ export class BasicComponent implements OnInit {
         this.callSca();
         break;
       default:
-        console.log('Without operator!');
+        {}
         break;
     }
   }

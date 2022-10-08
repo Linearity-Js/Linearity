@@ -30,7 +30,7 @@ export class DataRequestService {
   constructor(private http: HttpClient) {
     this.generalURL = this.dev_URL;
     this.isOnline();
-    console.log(this.message);
+    
   }
 
   public isOnline(): boolean {
