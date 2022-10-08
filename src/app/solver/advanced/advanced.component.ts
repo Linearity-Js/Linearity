@@ -92,7 +92,7 @@ export class AdvancedComponent implements OnInit {
 
   private callTranspose() {
     this.matrixC = this.matrixService.getTransposeMatrix(this.matrixA);
-    console.log(this.matrixC);
+    
     this.checkStatus();
     this.showResult = true;
   }
@@ -108,7 +108,7 @@ export class AdvancedComponent implements OnInit {
   private checkStatus() {
     if (this.matrixC.getStatus() != 200) {
       this.message = `Trying to connect...  \n We don't found response from the server. Check ur connection or try later. Estatus: ${this.matrixC.getStatus()}`
-      console.error(`${this.message}`);
+      
       this.showMessage = true;
     }
   }
